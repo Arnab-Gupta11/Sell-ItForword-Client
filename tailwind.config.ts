@@ -29,7 +29,7 @@ export default {
         kanit: ["var(--font-kanit)"],
       },
       colors: {
-        primary: "#9747FF",
+        primary: "#1E8DFF",
         "light-primary-txt": "#030e35",
         "light-secondary-txt": "#6f7d95",
         "dark-primary-txt": "#ebf0ff",
@@ -39,7 +39,11 @@ export default {
         "light-primary-bg": "#F4F6F9",
       },
       backgroundImage: {
-        "primary-btn-bg": "linear-gradient(315deg, rgb(115, 74, 232) 0%, rgb(0, 211, 197) 74%)",
+        "primary-btn-bg": "linear-gradient(315deg, rgb(115, 74, 232) 0%, rgb(0, 211, 197) 75%)",
+        "primary-btn-bg-hover": "linear-gradient(150deg, rgb(115, 74, 232) 0%, rgb(0, 211, 197) 74%)",
+        "card-shadow-dark": "rgb(21, 22, 47) 0px 1px 0px 1px, rgb(21, 22, 47) 0px 1px 0px 1px",
+        "card-shadow-light": "rgba(17, 17, 26, 0.05) 0px 1px 0px 1px, rgba(17, 17, 26, 0.1) 0px 1px 0px 1px",
+        "box-shadow": "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
       },
     },
   },

@@ -9,12 +9,32 @@ import { registerFormDefaultValue, registerSchema } from "./registerValidationSc
 import CustomForm from "@/components/ui/core/form/CustomForm";
 import CustomInput from "@/components/ui/core/form/CustomInput";
 import CustomPassword from "@/components/ui/core/form/CustomPassword";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/services/auth";
+import toast from "react-hot-toast";
+import { ImSpinner10 } from "react-icons/im";
 
 const Register = () => {
-  function onSubmit(values: z.infer<typeof registerSchema>) {
-    console.log(values);
-  }
+  const router = useRouter();
   const [form] = useFormHook(registerSchema, registerFormDefaultValue);
+  const {
+    formState: { isSubmitting },
+  } = form;
+
+  const onSubmit = async (data: z.infer<typeof registerSchema>) => {
+    try {
+      const res = await registerUser(data);
+      // setIsLoading(true);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/login");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
+  };
   return (
     <div>
       <Card className="bg-white dark:bg-dark-secondary-bg shadow-card-shadow-light dark:shadow-card-shadow-dark border-none">
@@ -39,8 +59,8 @@ const Register = () => {
               inputType={"password"}
               placeholder={"Confirm your password"}
             />
-            <Button variant="primary" className="w-full mt-8" type="submit">
-              Sign Up
+            <Button disabled={isSubmitting} type="submit" variant="primary" className="w-full mt-8 ">
+              {isSubmitting ? <ImSpinner10 className="animate-spin" /> : "Sign Up"}
             </Button>
           </CustomForm>
         </CardContent>

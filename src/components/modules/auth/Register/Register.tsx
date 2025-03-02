@@ -37,7 +37,7 @@ const Register = () => {
   };
   return (
     <div>
-      <Card className="bg-white dark:bg-dark-secondary-bg shadow-card-shadow-light dark:shadow-card-shadow-dark border-none">
+      <Card className="bg-light-secondary-bg dark:bg-dark-secondary-bg shadow-card-shadow-light dark:shadow-card-shadow-dark border-none">
         <CardHeader>
           <CardTitle className="mx-auto">
             {/* <Logo width={200} /> */}

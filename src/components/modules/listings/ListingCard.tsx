@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const ListingCard = ({ listing }: { listing: IListing }) => {
   return (
-    <Card className="p-3">
+    <Card className="p-3 bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
       <CardHeader className="relative p-0 h-48">
         <Image
           src={

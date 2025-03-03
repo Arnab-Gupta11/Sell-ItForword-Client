@@ -20,6 +20,9 @@ export const getAllListings = async (page?: string, limit?: string, query?: { [k
   if (query?.condition) {
     params.append("condition", query?.condition.toString());
   }
+  if (query?.searchTerm) {
+    params.append("searchTerm", query?.searchTerm.toString());
+  }
 
   console.log("FinalQuery", params);
 

@@ -2,25 +2,23 @@ import { IListing } from "@/types/listing.types";
 import FilterSidebar from "./FilterSidebar";
 import ListingCard from "./ListingCard";
 import SearchListings from "./SearchListings";
+import FilterResponsiveSidebar from "./FilterResponsiveSidebar";
 
 const AllListings = ({ listings }: { listings: IListing[] }) => {
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8 xl:px-0">
       <div className="grid grid-cols-1 bs:grid-cols-12 gap-5 pt-20 pb-24">
         <div className="bs:col-span-4 xl:col-span-3  hidden bs:block">
-          {/* <div className="flex items-center justify-between pb-4 border-b-[1px] border-b-[#f1f1f1]">
-            <div className="font-semibold text-slate-800 text-lg ">Filter Products</div>
-          </div> */}
           <FilterSidebar />
         </div>
         <div className="bs:col-span-8 xl:col-span-9">
           {/* search option  */}
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between pb-2 border-b-[1px] border-b-[#f1f1f1]">
-            <div>
+          <div className="flex gap-5 flex-row items-center flex-wrap pb-5 border-b-[1px] border-[#e9ebec] dark:border-[#142e3a]">
+            <div className="max-w-screen-xs flex-grow">
               <SearchListings />
             </div>
             <div className="flex items-center gap-4">
-              {/* <FilterSidbar queryParams={queryParams} setQuerParams={setQuerParams} initialMinPrice={0} initialMaxPrice={10000} /> */}
+              <FilterResponsiveSidebar />
             </div>
           </div>
           {/* {isLoading || isFetching ? (

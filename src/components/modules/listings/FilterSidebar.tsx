@@ -129,7 +129,7 @@ export default function FilterSidebar() {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg">
+    <div className="p-6 bg-light-secondary-bg dark:bg-dark-secondary-bg rounded-lg text-left text-light-primary-txt dark:text-dark-primary-txt">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">Filter</h2>
         {searchParams.toString().length > 0 && (
@@ -140,24 +140,24 @@ export default function FilterSidebar() {
       </div>
 
       <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-4">Price</h2>
+        <h2 className="text-lg font-semibold mb-4 text-left">Filter By Price</h2>
         <div className="space-y-4">
           <div>
-            <h3 className="text-sm font-light mb-2">Minimum Price</h3>
+            <h3 className="text-sm font-medium mb-2">Minimum Price</h3>
             <Slider min={0} max={100000} step={1} value={[minPrice]} onValueChange={(value) => handleMinPriceChange(value[0])} className="w-full" />
-            <p className="text-sm mt-2">Selected Min Price: ${minPrice}</p>
+            <p className="text-sm mt-2 text-light-secondary-txt dark:text-dark-secondary-txt font-medium">Selected Min Price: ${minPrice}</p>
           </div>
 
           <div>
-            <h3 className="text-sm font-light mb-2">Maximum Price</h3>
+            <h3 className="text-sm font-medium mb-2">Maximum Price</h3>
             <Slider min={0} max={100000} step={1} value={[maxPrice]} onValueChange={(value) => handleMaxPriceChange(value[0])} className="w-full" />
-            <p className="text-sm mt-2">Selected Max Price: ${maxPrice}</p>
+            <p className="text-sm mt-2 text-light-secondary-txt dark:text-dark-secondary-txt font-medium">Selected Max Price: ${maxPrice}</p>
           </div>
         </div>
       </div>
 
       <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-4">Product Category</h2>
+        <h2 className="text-lg font-semibold mb-4">Filter By Category</h2>
         <div className="space-y-2">
           {categories.map((category) => (
             <div key={category} className="flex items-center space-x-2">
@@ -169,7 +169,7 @@ export default function FilterSidebar() {
                 onChange={() => handleCategoryChange(category)}
                 className="cursor-pointer"
               />
-              <label htmlFor={category} className="text-gray-500 font-light cursor-pointer">
+              <label htmlFor={category} className="text-light-secondary-txt dark:text-dark-secondary-txt font-medium cursor-pointer">
                 {category}
               </label>
             </div>
@@ -178,7 +178,7 @@ export default function FilterSidebar() {
       </div>
 
       <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-4">City</h2>
+        <h2 className="text-lg font-semibold mb-4">Filter By City</h2>
         <div className="space-y-2">
           {locations.map((city) => (
             <div key={city} className="flex items-center space-x-2">
@@ -191,7 +191,7 @@ export default function FilterSidebar() {
                 onChange={() => handleCityChange(city)}
                 className="cursor-pointer"
               />
-              <label htmlFor={city} className="text-gray-500 font-light cursor-pointer">
+              <label htmlFor={city} className="text-light-secondary-txt dark:text-dark-secondary-txt font-medium cursor-pointer">
                 {city}
               </label>
             </div>
@@ -213,7 +213,7 @@ export default function FilterSidebar() {
                 onChange={() => handleConditionChange(condition)}
                 className="cursor-pointer"
               />
-              <label htmlFor={condition} className="text-gray-500 font-light cursor-pointer">
+              <label htmlFor={condition} className="text-light-secondary-txt dark:text-dark-secondary-txt font-medium cursor-pointer">
                 {condition}
               </label>
             </div>

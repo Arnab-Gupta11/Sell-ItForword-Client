@@ -7,7 +7,6 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import NavSidebar from "./NavSidebar";
-import { Button } from "@/components/ui/button";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 
 export type TUserProps = {

@@ -32,8 +32,8 @@ const Navbar = () => {
       show: true,
     },
     {
-      label: "projects",
-      path: "/projects",
+      label: "All Listings",
+      path: "/listings",
       show: true,
     },
     // {

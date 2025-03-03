@@ -27,7 +27,7 @@ const SearchDropdown = () => {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto mt-10">
+    <div className="relative w-full max-w-md mx-auto px-5 sm:px-0 mt-10">
       <div className="relative flex items-center rounded-xl overflow-hidden bg-[#eceded] dark:bg-[#07141e] h-14 shadow-box-shadow dark:shadow-box-shadow-dark">
         <Input
           type="text"

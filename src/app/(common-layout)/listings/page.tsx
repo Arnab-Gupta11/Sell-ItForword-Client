@@ -1,6 +1,6 @@
 import AllListings from "@/components/modules/listings/AllListings";
 import { getAllListings } from "@/services/listing";
-type TSearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+export type TSearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }) => {
   const query = await searchParams;
 

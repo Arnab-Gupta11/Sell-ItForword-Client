@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
 
 import {
@@ -49,13 +50,12 @@ const Category = () => {
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 bs:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5 mt-10">
         {listingCategoriesWithIcons.map(({ Icon, category }) => (
-          <div
-            key={category}
-            className="flex items-center gap-2 p-3 rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]"
-          >
-            <Icon className="text-xl text-primary" />
-            <h1 className="text-base font-medium text-light-primary-txt dark:text-dark-primary-txt">{category}</h1>
-          </div>
+          <Link href={`/listings/categories/${category}`} key={category}>
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
+              <Icon className="text-xl text-primary" />
+              <h1 className="text-base font-medium text-light-primary-txt dark:text-dark-primary-txt">{category}</h1>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

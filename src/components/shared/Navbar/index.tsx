@@ -36,17 +36,12 @@ const Navbar = () => {
       path: "/listings",
       show: true,
     },
-    // {
-    //   label: "Blog",
-    //   path: "/dashboard",
-    //   show: true,
-    //   // path: `${user?.role === "admin" ? "/dashboard/manage-products" : "/dashboard/view-orders"}`,
-    //   // show: user?.role === "user" || user?.role === "admin",
-    // },
     {
-      label: "Blogs",
-      path: "/blogs",
+      label: "Dashboard",
+      path: "/dashboard/user/listings",
       show: true,
+      // path: `${user?.role === "admin" ? "/dashboard/manage-products" : "/dashboard/view-orders"}`,
+      // show: user?.role === "user" || user?.role === "admin",
     },
     {
       label: "Contact",

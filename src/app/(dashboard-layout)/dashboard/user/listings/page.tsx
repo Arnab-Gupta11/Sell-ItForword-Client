@@ -1,4 +1,4 @@
-import ManageListings from "@/components/modules/dashboard/user/ManageListings";
+import ManageListings from "@/components/modules/dashboard/user/ManageListings/ManageListings";
 import { getCurrentUser } from "@/services/auth";
 import { getAllListingsOfAUser } from "@/services/listing";
 

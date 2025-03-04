@@ -17,6 +17,7 @@ import toast from "react-hot-toast";
 import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmationModal";
 import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
+import { deleteListing } from "@/services/listing";
 const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
   // const handleDelete = (_id: string) => {
   //   Swal.fire({
@@ -52,16 +53,16 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
 
   const handleDeleteConfirm = async () => {
     try {
-      // if (selectedId) {
-      //   const res = await deleteBrand(selectedId);
-      //   console.log(res);
-      //   if (res.success) {
-      //     toast.success(res.message);
-      //     setModalOpen(false);
-      //   } else {
-      //     toast.error(res.message);
-      //   }
-      // }
+      if (selectedId) {
+        const res = await deleteListing(selectedId);
+        console.log(res);
+        if (res?.success) {
+          toast.success(res?.message);
+          setModalOpen(false);
+        } else {
+          toast.error(res?.message);
+        }
+      }
     } catch (err: any) {
       console.error(err?.message);
     }
@@ -116,15 +117,15 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
                       side="bottom"
                       className="bg-[#f7fbfe] dark:bg-[#101624] border-none shadow-md shadow-secondary-bg-light outline-none p-2 flex flex-col gap-2"
                     >
-                      <Link href={`/dashboard/blogs/${item?._id}`}>
-                        <span className="text-slate-700 hover:text-slate-900 dark:text-dark-primary-txt dark:hover:text-dark-secondary-txt ">
+                      <Link href={`/dashboard/user/listings/${item?._id}`}>
+                        <span className="text-light-primary-txt dark:text-dark-primary-txt hover:text-primary dark:hover:text-primary cursor-pointer">
                           Update
                         </span>
                       </Link>
 
                       <span
                         onClick={() => handleDelete(item)}
-                        className="text-slate-700 hover:text-slate-900 hover:cursor-pointer dark:text-dark-primary-txt dark:hover:text-dark-secondary-txt "
+                        className="text-light-primary-txt dark:text-dark-primary-txt hover:text-primary dark:hover:text-primary cursor-pointer"
                       >
                         Delete
                       </span>

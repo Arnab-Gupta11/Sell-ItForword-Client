@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 import { TMeta } from "@/types/global.types";
 import { usePathname, useRouter } from "next/navigation";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";

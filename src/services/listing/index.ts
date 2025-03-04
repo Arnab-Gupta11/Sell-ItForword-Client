@@ -23,6 +23,27 @@ export const createListing = async (listingData: FormData): Promise<any> => {
     return Error(error);
   }
 };
+// export const Listing = async (listingData: FormData): Promise<any> => {
+//   const token = await getValidToken();
+
+//   try {
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: token,
+//       },
+//       body: JSON.stringify(listingData),
+//     });
+
+//     revalidateTag("LISTING");
+//     const result = res.json();
+
+//     return result;
+//   } catch (error: any) {
+//     return Error(error);
+//   }
+// };
 // get all products
 export const getAllListings = async (page?: string, limit?: string, query?: { [key: string]: string | string[] | undefined }) => {
   const params = new URLSearchParams();
@@ -123,5 +144,34 @@ export const getAllListingsOfAUser = async (id: string, page: string) => {
     return data;
   } catch (error: any) {
     return Error(error.message);
+  }
+};
+export const getListingDetails = async (id: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`, {
+      next: {
+        tags: ["LISTING"],
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};
+export const deleteListing = async (listingId: string): Promise<any> => {
+  const token = await getValidToken();
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${listingId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
+    revalidateTag("LISTING");
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
   }
 };

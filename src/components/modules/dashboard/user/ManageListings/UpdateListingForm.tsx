@@ -6,17 +6,15 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import toast from "react-hot-toast";
-
-import { BiLoaderCircle } from "react-icons/bi";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import imageUpload from "@/lib/imageUpload";
 import { ImSpinner10 } from "react-icons/im";
-import { createListing } from "@/services/listing";
+// import { createListing } from "@/services/listing";
 import { useRouter } from "next/navigation";
 import { categoryOptions, cityOptions, conditionOptions } from "@/constants/listing.constant";
 
-const AddListingForm = () => {
+const UpdateListingForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -38,14 +36,15 @@ const AddListingForm = () => {
         price: Number(data.price),
         image: imageData,
       };
-      const res = await createListing(listingInfo);
-      if (res?.success) {
-        toast.success(res?.message);
-        reset();
-        router.push("/dashboard/user/listings");
-      } else {
-        toast.error(res?.message);
-      }
+      console.log(listingInfo);
+      // const res = await createListing(listingInfo);
+      // if (res?.success) {
+      //   toast.success(res?.message);
+      //   reset();
+      //   router.push("/dashboard/user/listings");
+      // } else {
+      //   toast.error(res?.message);
+      // }
     } catch (err: any) {
       // toast.error(err?.data?.message);
       console.log(err);
@@ -213,4 +212,4 @@ const AddListingForm = () => {
   );
 };
 
-export default AddListingForm;
+export default UpdateListingForm;

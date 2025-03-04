@@ -10,11 +10,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import imageUpload from "@/lib/imageUpload";
 import { ImSpinner10 } from "react-icons/im";
-// import { createListing } from "@/services/listing";
 import { useRouter } from "next/navigation";
 import { categoryOptions, cityOptions, conditionOptions } from "@/constants/listing.constant";
+import { TListingDetails } from "@/types/listing.types";
+import { UpdateListing } from "@/services/listing";
 
-const UpdateListingForm = () => {
+const UpdateListingForm = ({ listingDetails }: { listingDetails: TListingDetails }) => {
+  const { _id, address, category, city, condition, description, image, phone, price, title } = listingDetails;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -29,22 +31,31 @@ const UpdateListingForm = () => {
   const onSubmit = async (data: any) => {
     try {
       setLoading(true);
-      const image = data.image[0];
-      const imageData = await imageUpload(image);
+      let imageData;
+      if (data.image[0]) {
+        const fileImage = data.image[0];
+        imageData = await imageUpload(fileImage);
+      }
       const listingInfo = {
-        ...data,
-        price: Number(data.price),
-        image: imageData,
+        address: data.address || address,
+        category: data.category || category,
+        city: data.city || city,
+        condition: data.condition || condition,
+        description: data.description || description,
+        image: imageData || image,
+        phone: data.phone || phone,
+        price: data.price || price,
+        title: data.title || title,
       };
-      console.log(listingInfo);
-      // const res = await createListing(listingInfo);
-      // if (res?.success) {
-      //   toast.success(res?.message);
-      //   reset();
-      //   router.push("/dashboard/user/listings");
-      // } else {
-      //   toast.error(res?.message);
-      // }
+      const res = await UpdateListing(_id, listingInfo);
+      console.log(res);
+      if (res?.success) {
+        toast.success(res?.message);
+        reset();
+        router.push("/dashboard/user/listings");
+      } else {
+        toast.error(res?.message);
+      }
     } catch (err: any) {
       // toast.error(err?.data?.message);
       console.log(err);
@@ -57,7 +68,7 @@ const UpdateListingForm = () => {
     <div className="z-0">
       <div className="pt-10 px-4 bs:px-0">
         <div className="flex items-center justify-between mb-5 pt-8 md:px-14">
-          <h2 className="text-base sm:text-lg bs:text-xl font-bold text-light-text-100 dark:text-dark-text-100 ">Add New Listing</h2>
+          <h2 className="text-base sm:text-lg bs:text-xl font-bold text-light-text-100 dark:text-dark-text-100 ">Update Listing</h2>
           <Button variant="primary" onClick={() => router.push("/dashboard/user/listings")}>
             <IoMdArrowRoundBack />
           </Button>
@@ -68,13 +79,20 @@ const UpdateListingForm = () => {
           <div className="flex flex-col md:flex-row gap-3 md:gap-5 mb-3 md:mb-5">
             <div className="w-full md:w-1/2">
               <Label>Title</Label>
-              <Input type="text" placeholder="Enter listing title" className="mt-1.5" {...register("title", { required: true })} />
+              <Input
+                defaultValue={title}
+                type="text"
+                placeholder="Enter listing title"
+                className="mt-1.5"
+                {...register("title", { required: true })}
+              />
               {errors.title && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Title is required</span>}
             </div>
             <div className="w-full md:w-1/2">
               <Label>Price</Label>
               <Input
                 type="text"
+                defaultValue={price}
                 placeholder="Enter listing price"
                 className="mt-1.5"
                 {...register("price", {
@@ -90,6 +108,7 @@ const UpdateListingForm = () => {
             <div className="w-full md:w-1/2">
               <Label>Category</Label>
               <select
+                defaultValue={category}
                 className="bg-light-primary-bg dark:bg-dark-primary-bg flex h-9 w-full rounded-md px-3 py-1.5  md:text-sm hover:cursor-pointer mt-1.5 focus-visible:outline-none"
                 {...register("category", { required: true })}
               >
@@ -107,6 +126,7 @@ const UpdateListingForm = () => {
             <div className="w-full md:w-1/2">
               <Label>City</Label>
               <select
+                defaultValue={city}
                 className="bg-light-primary-bg dark:bg-dark-primary-bg flex h-9 w-full rounded-md px-3 py-1.5  md:text-sm hover:cursor-pointer mt-1.5 focus-visible:outline-none"
                 {...register("city", { required: true })}
               >
@@ -139,13 +159,13 @@ const UpdateListingForm = () => {
                 </label>
 
                 {/* Hidden File Input */}
-                <input className="hidden" id="file_input" type="file" accept="image/*" {...register("image", { required: true })} />
+                <input className="hidden" id="file_input" type="file" accept="image/*" {...register("image")} />
               </div>
-              {errors.image && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Image is required</span>}
             </div>
             <div className="w-full md:w-1/2">
               <Label>Condition</Label>
               <select
+                defaultValue={condition}
                 className="bg-light-primary-bg dark:bg-dark-primary-bg flex h-9 w-full rounded-md px-3 py-1.5  md:text-sm hover:cursor-pointer mt-1.5 focus-visible:outline-none"
                 {...register("condition", { required: true })}
               >
@@ -167,6 +187,7 @@ const UpdateListingForm = () => {
             <div className="w-full md:w-1/2">
               <Label>Phone Number</Label>
               <Input
+                defaultValue={phone}
                 type="text"
                 placeholder="Enter Phone Number"
                 className="mt-1.5"
@@ -180,7 +201,13 @@ const UpdateListingForm = () => {
 
             <div className="w-full md:w-1/2">
               <Label>Address</Label>
-              <Input type="text" placeholder="Enter listing title" className="mt-1.5" {...register("address", { required: true })} />
+              <Input
+                defaultValue={address}
+                type="text"
+                placeholder="Enter listing title"
+                className="mt-1.5"
+                {...register("address", { required: true })}
+              />
               {errors.address && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Address is required</span>}
             </div>
           </div>
@@ -190,6 +217,7 @@ const UpdateListingForm = () => {
           <div className=" mt-5">
             <Label>Details Information</Label>
             <textarea
+              defaultValue={description}
               className="bg-light-primary-bg dark:bg-dark-primary-bg w-full px-3 py-1.5 text-base shadow-sm md:text-sm text-light-primary-txt dark:text-dark-primary-txt mt-1.5 focus-within:outline-none"
               id=""
               cols={30}
@@ -203,7 +231,7 @@ const UpdateListingForm = () => {
           {/* button */}
           <div className=" mt-8 ">
             <Button variant="primary" type="submit" disabled={loading} className="sm-mx:w-full w-32">
-              {loading ? <ImSpinner10 className="animate-spin" /> : "Add Product"}
+              {loading ? <ImSpinner10 className="animate-spin" /> : "Update"}
             </Button>
           </div>
         </form>

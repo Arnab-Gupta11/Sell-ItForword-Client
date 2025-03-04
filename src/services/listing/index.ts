@@ -1,5 +1,6 @@
 "use server";
 import { getValidToken } from "@/lib/verifyToken";
+import { TListingDetails } from "@/types/listing.types";
 import { revalidateTag } from "next/cache";
 
 export const createListing = async (listingData: FormData): Promise<any> => {
@@ -23,27 +24,27 @@ export const createListing = async (listingData: FormData): Promise<any> => {
     return Error(error);
   }
 };
-// export const Listing = async (listingData: FormData): Promise<any> => {
-//   const token = await getValidToken();
+export const UpdateListing = async (id: string, listingData: Partial<TListingDetails>): Promise<any> => {
+  const token = await getValidToken();
 
-//   try {
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: token,
-//       },
-//       body: JSON.stringify(listingData),
-//     });
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(listingData),
+    });
 
-//     revalidateTag("LISTING");
-//     const result = res.json();
+    revalidateTag("LISTING");
+    const result = res.json();
 
-//     return result;
-//   } catch (error: any) {
-//     return Error(error);
-//   }
-// };
+    return result;
+  } catch (error: any) {
+    return Error(error);
+  }
+};
 // get all products
 export const getAllListings = async (page?: string, limit?: string, query?: { [key: string]: string | string[] | undefined }) => {
   const params = new URLSearchParams();

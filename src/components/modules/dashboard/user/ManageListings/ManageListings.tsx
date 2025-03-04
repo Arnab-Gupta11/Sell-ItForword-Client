@@ -82,7 +82,7 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
       {/* {isLoading || isFetching ? (
         <Loader />
       ) : ( */}
-      <div className="overflow-x-auto rounded-xl shadow-sm pb-10">
+      <div className="overflow-x-auto rounded-xl  pb-10">
         <table className="w-full border border-[#e9ebec] dark:border-[#142e3a] mb-5 select-none -z-10">
           <thead className="bg-light-primary-bg dark:bg-dark-primary-bg">
             <tr>

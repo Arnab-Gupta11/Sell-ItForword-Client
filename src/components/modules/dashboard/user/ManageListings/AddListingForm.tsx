@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import toast from "react-hot-toast";
 
-import { BiLoaderCircle } from "react-icons/bi";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import imageUpload from "@/lib/imageUpload";

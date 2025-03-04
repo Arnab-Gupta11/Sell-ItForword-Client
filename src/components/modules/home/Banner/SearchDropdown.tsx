@@ -24,10 +24,12 @@ const SearchDropdown = () => {
     try {
       if (cacheListing[input]) {
         setListings(cacheListing[input]);
+        console.log("result show from cache");
         return;
       }
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?searchTerm=${input}`);
       const result = await res.json();
+      console.log("result show from api");
       setListings(result?.data);
       setCacheListing((prev) => ({ ...prev, [input]: result?.data }));
     } catch (error: any) {
@@ -36,7 +38,7 @@ const SearchDropdown = () => {
       setLoading(false);
     }
   };
-
+//ab
   useEffect(() => {
     const timer = setTimeout(fetchData, 300);
     return () => {
@@ -44,7 +46,6 @@ const SearchDropdown = () => {
     };
   }, [input]);
 
-  // Click outside logic
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {

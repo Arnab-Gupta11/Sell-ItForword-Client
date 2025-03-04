@@ -13,7 +13,11 @@ import Image from "next/image";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { IListing } from "@/types/listing.types";
 import { formatPrice } from "@/lib/formatePrice";
-const ManageListings = ({ listings }: { listings: IListing[] }) => {
+import toast from "react-hot-toast";
+import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmationModal";
+import { TMeta } from "@/types/global.types";
+import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
+const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
   // const handleDelete = (_id: string) => {
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -36,6 +40,32 @@ const ManageListings = ({ listings }: { listings: IListing[] }) => {
   //     }
   //   });
   // };
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  const handleDelete = (data: IListing) => {
+    setSelectedId(data?._id);
+    setSelectedItem(data?.title);
+    setModalOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      // if (selectedId) {
+      //   const res = await deleteBrand(selectedId);
+      //   console.log(res);
+      //   if (res.success) {
+      //     toast.success(res.message);
+      //     setModalOpen(false);
+      //   } else {
+      //     toast.error(res.message);
+      //   }
+      // }
+    } catch (err: any) {
+      console.error(err?.message);
+    }
+  };
 
   return (
     <div>
@@ -93,7 +123,7 @@ const ManageListings = ({ listings }: { listings: IListing[] }) => {
                       </Link>
 
                       <span
-                        // onClick={() => handleDelete(item?._id)}
+                        onClick={() => handleDelete(item)}
                         className="text-slate-700 hover:text-slate-900 hover:cursor-pointer dark:text-dark-primary-txt dark:hover:text-dark-secondary-txt "
                       >
                         Delete
@@ -105,8 +135,11 @@ const ManageListings = ({ listings }: { listings: IListing[] }) => {
             ))}
           </tbody>
         </table>
+        <CustomPagination meta={meta} />
       </div>
       {/* )} */}
+
+      <DeleteConfirmationModal name={selectedItem} isOpen={isModalOpen} onOpenChange={setModalOpen} onConfirm={handleDeleteConfirm} />
     </div>
   );
 };

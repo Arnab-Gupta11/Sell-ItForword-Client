@@ -108,10 +108,10 @@ export const getAllListingsByCategory = async (
   }
 };
 
-export const getAllListingsOfAUser = async (id: string) => {
+export const getAllListingsOfAUser = async (id: string, page: string) => {
   const token = await getValidToken();
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/user/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/user/${id}?page=${page}`, {
       headers: {
         Authorization: token,
       },

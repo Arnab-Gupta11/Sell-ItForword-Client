@@ -46,7 +46,6 @@ const AddListingForm = () => {
         toast.error(res?.message);
       }
     } catch (err: any) {
-      // toast.error(err?.data?.message);
       console.log(err);
     } finally {
       setLoading(false);

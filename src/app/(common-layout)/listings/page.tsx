@@ -5,7 +5,6 @@ const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }
   const query = await searchParams;
 
   const { data: listings } = await getAllListings(undefined, undefined, query);
-  console.log("Listings", listings);
   return (
     <div>
       <AllListings listings={listings} />

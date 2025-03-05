@@ -71,8 +71,6 @@ export const getAllListings = async (page?: string, limit?: string, query?: { [k
     params.append("searchTerm", query?.searchTerm.toString());
   }
 
-  // console.log("FinalQuery", params);
-
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?limit=${limit}&page=${page}&${params}`, {
       next: {
@@ -115,7 +113,6 @@ export const getAllListingsByCategory = async (
     params.append("searchTerm", query?.searchTerm.toString());
   }
 
-  // console.log("FinalQuery", params);
 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/categories/${category}/?limit=${limit}&page=${page}&${params}`, {

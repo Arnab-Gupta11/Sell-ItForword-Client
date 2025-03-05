@@ -11,7 +11,6 @@ const UpdateTransactionStatus = ({ id, status }: { id: string; status: string })
     try {
       setLoading(true);
       const res = await updateTransactionStatus(id);
-      console.log(res);
 
       if (res?.success) {
         toast.success(res?.message);

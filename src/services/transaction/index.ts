@@ -27,7 +27,6 @@ export const getPaymentSuccessDetails = async (sessionId: string) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/transactions/payment-details?session_id=${sessionId}`, {
       cache: "no-store",
     });
-    revalidateTag("PAYMENT");
     const data = await res.json();
     return data;
   } catch (error: any) {

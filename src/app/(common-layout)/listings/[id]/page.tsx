@@ -3,12 +3,10 @@ import React from "react";
 import { getListingDetails } from "@/services/listing";
 import BuyListings from "@/components/modules/transaction/BuyListings";
 import { formatPrice } from "@/lib/formatePrice";
-import { formatMongoDateToDate } from "@/lib/formateDate";
 import { formateDateTime } from "@/lib/formateDateTime";
-import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
-import { BsHeartFill } from "react-icons/bs";
-
+// import { getCurrentUser } from "@/services/auth";
+import { isListingExistInWishList } from "@/services/wishlist";
+import WishListButton from "@/components/modules/listings/WishListButton";
 // export async function generateMetadata({ params }: { params: Promise<{ projectId: string }> }) {
 //   const { projectId } = await params;
 //   const res = await fetch(`https://portfolio-server-psi-jet.vercel.app/api/v1/projects/${projectId}`);
@@ -21,7 +19,10 @@ import { BsHeartFill } from "react-icons/bs";
 
 const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
+  // const user = getCurrentUser();
   const res = await getListingDetails(id);
+  const checkListingExistInWishlist = await isListingExistInWishList(id);
+  const isExist = checkListingExistInWishlist?.data;
   const { data } = res;
   return (
     <div className="pb-28">
@@ -76,9 +77,7 @@ const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) =
             <div className="mt-5 flex flex-col xsm:flex-row items-center gap-4">
               <div className="flex items-center gap-4 w-full flex-wrap">
                 <BuyListings listingsDetails={data} />
-                <Button className="py-2 rounded-lg group bg-transparent hover:bg-red-500 border-2 border-red-500 shadow-sm shadow-[#d3d6d7] dark:shadow-[#142e3a]">
-                  <BsHeartFill size={234} className="text-red-500 font-bold text-2xl group-hover:text-dark-primary-txt duration-700" />
-                </Button>
+                <WishListButton isExist={isExist} listingId={id} />
               </div>
             </div>
           </div>

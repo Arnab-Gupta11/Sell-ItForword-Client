@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { IListing } from "@/types/listing.types";
@@ -8,8 +6,12 @@ import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsEye } from "react-icons/bs";
+import WishListButton from "./WishListButton";
+import { isListingExistInWishList } from "@/services/wishlist";
 
-const ListingCard = ({ listing }: { listing: IListing }) => {
+const ListingCard = async ({ listing }: { listing: IListing }) => {
+  const checkListingExistInWishlist = await isListingExistInWishList(listing?._id);
+  const isExist = checkListingExistInWishlist?.data;
   return (
     <Card className="p-3 bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
       <CardHeader className="relative p-0 h-48">
@@ -47,9 +49,7 @@ const ListingCard = ({ listing }: { listing: IListing }) => {
             </Button>
           </Link>
 
-          <Button variant="outline" size="sm" className="w-8 h-8 p-0 flex items-center justify-center rounded-full">
-            <Heart />
-          </Button>
+          <WishListButton isExist={isExist} listingId={listing?._id} />
         </div>
       </CardFooter>
     </Card>

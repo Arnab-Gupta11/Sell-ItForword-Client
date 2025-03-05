@@ -33,7 +33,6 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
     try {
       if (selectedId) {
         const res = await deleteListing(selectedId);
-        console.log(res);
         if (res?.success) {
           toast.success(res?.message);
           setModalOpen(false);

@@ -48,7 +48,6 @@ const UpdateListingForm = ({ listingDetails }: { listingDetails: TListingDetails
         title: data.title || title,
       };
       const res = await UpdateListing(_id, listingInfo);
-      console.log(res);
       if (res?.success) {
         toast.success(res?.message);
         reset();

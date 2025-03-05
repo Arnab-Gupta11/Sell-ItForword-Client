@@ -3,11 +3,11 @@ import { formateDateTime } from "@/lib/formateDateTime";
 import { formatPrice } from "@/lib/formatePrice";
 import { getPaymentSuccessDetails } from "@/services/transaction";
 import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 export type TSearchParams = Promise<{ [key: string]: string | undefined }>;
 const PaymentSuccessPage = async ({ searchParams }: { searchParams: TSearchParams }) => {
   const { session_id } = await searchParams;
   const paymentDetails = await getPaymentSuccessDetails(session_id!);
-
   if (!paymentDetails) {
     return <p className="text-center text-red-500 text-lg">Failed to fetch payment details.</p>;
   }
@@ -39,9 +39,11 @@ const PaymentSuccessPage = async ({ searchParams }: { searchParams: TSearchParam
             </div>
           </div>
 
-          <Button variant="primary" className="mt-5">
-            View Orders
-          </Button>
+          <Link href={"/dashboard/user/purchase-history"}>
+            <Button variant="primary" className="mt-5">
+              View Orders
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

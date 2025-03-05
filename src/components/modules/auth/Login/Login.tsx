@@ -24,12 +24,9 @@ const Login = () => {
   const {
     formState: { isSubmitting },
   } = form;
-  // console.log(form);
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     try {
       const res = await loginUser(data);
-      console.log(res);
-      // setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {

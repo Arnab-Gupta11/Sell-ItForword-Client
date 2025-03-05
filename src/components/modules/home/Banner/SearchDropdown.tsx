@@ -24,12 +24,10 @@ const SearchDropdown = () => {
     try {
       if (cacheListing[input]) {
         setListings(cacheListing[input]);
-        console.log("result show from cache");
         return;
       }
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?searchTerm=${input}`);
       const result = await res.json();
-      console.log("result show from api");
       setListings(result?.data);
       setCacheListing((prev) => ({ ...prev, [input]: result?.data }));
     } catch (error: any) {

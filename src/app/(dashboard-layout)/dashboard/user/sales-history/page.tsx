@@ -8,7 +8,7 @@ const SalesHistoryPage = async () => {
   const res = await getSalesHistory(user.userId);
   return (
     <div>
-      {res?.data && res?.data?.length > 0 ? (
+      {res?.data && res?.data?.result?.length > 0 ? (
         <SalesHistory result={res?.data?.result} meta={res?.data?.meta} />
       ) : (
         <div className="min-h-[calc(100vh-100px)] col-span-3 flex items-center justify-center">

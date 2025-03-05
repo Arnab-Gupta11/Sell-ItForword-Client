@@ -8,7 +8,6 @@ const CategoryListingsPage = async ({ params, searchParams }: { params: Promise<
   const query = await searchParams;
 
   const { data: listings } = await getAllListingsByCategory(category, undefined, undefined, query);
-  console.log("Listings", listings);
   return (
     <div>
       <AllListingsByCategory listings={listings} />

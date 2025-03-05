@@ -8,6 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TRefUser } from "@/types/user.types";
 import { ImSpinner10 } from "react-icons/im";
+import imageUpload from "@/lib/imageUpload";
+import { updateUserProfileDetails } from "@/services/user";
+import toast from "react-hot-toast";
 const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
   const [loading, setLoading] = useState(false);
 
@@ -19,40 +22,31 @@ const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    // try {
-    //   setLoading(true);
-    //   let imageData;
-    //   if (data.image[0]) {
-    //     const fileImage = data.image[0];
-    //     imageData = await imageUpload(fileImage);
-    //   }
-    //   const userInfo = {
-    //     fullName: data.name || loginUser?.name,
-    //     profilePicture: imageData || loginUser?.profilePicture,
-    //     phone: data.phone || String(loginUser?.phone),
-    //     city: data.city || loginUser?.city,
-    //     address: data.address || loginUser?.address,
-    //   };
-    //   const storeProfile = {
-    //     name: data.fullName || loginUser?.name,
-    //     userId: loginUser?.userId,
-    //     userEmail: loginUser?.userEmail,
-    //     profilePicture: imageData || loginUser?.profilePicture,
-    //     role: loginUser?.role,
-    //     phone: data.phone || String(loginUser?.phone),
-    //     city: data.city || loginUser?.city,
-    //     address: data.address || loginUser?.address,
-    //   };
-    //   const res = await updateUserInfo({ id: loginUser?.userId, data: userInfo }).unwrap();
-    //   if (res?.success === true) {
-    //     toast.success("User Profile Updated Successfully");
-    //   }
-    // } catch (err: any) {
-    //   toast.error(err?.data?.message);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      let imageData;
+      if (data.image[0]) {
+        const fileImage = data.image[0];
+        imageData = await imageUpload(fileImage);
+      }
+      const updatedUserDetails = {
+        fullName: data.name || userInfo?.fullName,
+        image: imageData || userInfo?.image,
+        phone: data.phone || String(userInfo?.phone),
+        city: data.city || userInfo?.city,
+        address: data.address || userInfo?.address,
+      };
+      const res = await updateUserProfileDetails(userInfo?._id, updatedUserDetails);
+      if (res?.success === true) {
+        toast.success("User Profile Updated Successfully");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,7 +57,7 @@ const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-start gap-8 md:px-14 rounded-md pb-10">
-          <div className="w-full sm:w-56 h-full p-3 bg-light-primary-bg dark:bg-dark-primary-bg rounded-lg mt-2">
+          <div className="mx-auto w-full xsm:w-56 h-full p-3 bg-light-primary-bg dark:bg-dark-primary-bg rounded-lg mt-2">
             <Avatar className="w-full xsm:w-48 h-48 rounded-lg">
               <AvatarImage src={userInfo ? userInfo?.image : "https://github.com/shadcn.png"} alt="@shadcn" />
               <AvatarFallback>DP</AvatarFallback>
@@ -142,7 +136,7 @@ const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
 
             {/* button */}
             <div className=" mt-8 ">
-              <Button variant="primary" type="submit" disabled={loading} className="sm-mx:w-full">
+              <Button variant="primary" type="submit" disabled={loading} className="sm-mx:w-full w-32">
                 {loading ? <ImSpinner10 className="animate-spin" /> : "Update Profile"}
               </Button>
             </div>

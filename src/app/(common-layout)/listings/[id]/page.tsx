@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { MdOutlineShoppingBag } from "react-icons/md";
-import { Button } from "@/components/ui/button";
 import { getListingDetails } from "@/services/listing";
 import BuyListings from "@/components/modules/transaction/BuyListings";
 
@@ -33,6 +31,13 @@ const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) =
             />
           </div>
           <div>
+            <div>
+              {data?.status === "available" ? (
+                <span className="bg-[#ccfdc7] border-2 border-green-400 text-green-900 px-2 py-0.5 text-sm font-semibold rounded-md">Available</span>
+              ) : (
+                <span className="bg-[#FBE6EC]  text-red-500 px-2 py-0.5 text-sm font-semibold rounded-md">Sold</span>
+              )}
+            </div>
             <h1 className="text-3xl font-bold text-light-primary-txt dark:text-dark-primary-txt">{data?.title}</h1>
             <p className="mt-5 text-light-secondary-txt dark:text-dark-secondary-txt">{data?.description}</p>
             <h4 className="text-light-secondary-txt dark:text-dark-secondary-txt mt-2">

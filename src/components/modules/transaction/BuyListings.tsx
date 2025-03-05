@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import useUser from "@/hooks/useUser";
 import { buyListing } from "@/services/transaction";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -35,9 +36,10 @@ type TRefUser = {
   _id: string;
 };
 const BuyListings = ({ listingsDetails }: { listingsDetails: IListingDetails }) => {
+  const { user } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  console.log(user);
   const handleBuyNow = async () => {
     try {
       setLoading(true);

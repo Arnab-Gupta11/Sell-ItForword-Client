@@ -19,28 +19,6 @@ import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { deleteListing } from "@/services/listing";
 const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
-  // const handleDelete = (_id: string) => {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then(async (result) => {
-  //     if (result.isConfirmed) {
-  //       try {
-  //         const res = await deleteBlog({ id: _id }).unwrap();
-  //         if (res?.success === true) {
-  //           Swal.fire("Your Blog has been Deleted!", "success");
-  //         }
-  //       } catch (error) {
-  //         Swal.fire("Error!", "Failed to delete Blog. Please try again later.", "error");
-  //       }
-  //     }
-  //   });
-  // };
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);

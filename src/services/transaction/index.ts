@@ -44,11 +44,44 @@ export const getPurchaseHistory = async (userId: string) => {
         Authorization: token,
       },
       next: {
-        tags: ["PAYMENT"],
+        tags: ["PAYMENT", "STATUS"],
       },
     });
     const data = await res.json();
     return data;
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+export const getSalesHistory = async (userId: string) => {
+  const token = await getValidToken();
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/transactions/sales/${userId}`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+      next: {
+        tags: ["PAYMENT", "STATUS"],
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+export const updateTransactionStatus = async (id: string) => {
+  const token = await getValidToken();
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/transactions/status/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+      },
+    });
+    revalidateTag("STATUS");
+    return res.json();
   } catch (error: any) {
     return Error(error);
   }

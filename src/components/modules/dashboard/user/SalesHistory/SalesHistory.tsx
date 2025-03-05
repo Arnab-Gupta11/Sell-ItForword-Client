@@ -9,14 +9,15 @@ import { CustomPagination } from "@/components/shared/CustomPagination/CustomPag
 import { ITransaction } from "@/types/transaction.types";
 import { formatMongoDateToDate } from "@/lib/formateDate";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import PurchaseDetails from "./PurchaseDetails";
+import SalesDetails from "./SalesDetails";
 import { FaBoxOpen } from "react-icons/fa";
-const PurchaseHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta }) => {
+import UpdateTransactionStatus from "./UpdateTransactionStatus";
+const SalesHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta }) => {
   return (
     <div>
       {result.length > 0 && (
         <div className="mb-5">
-          <h1 className="text-2xl font-semibold text-light-primary-txt dark:text-dark-primary-txt">Purchase History</h1>
+          <h1 className="text-2xl font-semibold text-light-primary-txt dark:text-dark-primary-txt">Sales History</h1>
         </div>
       )}
       <div className="overflow-x-auto rounded-xl  pb-10">
@@ -80,14 +81,17 @@ const PurchaseHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           side="bottom"
-                          className="bg-[#f7fbfe] dark:bg-[#101624] border-none shadow-md shadow-secondary-bg-light outline-none p-2 flex flex-col gap-2"
+                          className="bg-light-secondary-bg dark:bg-dark-primary-bg border-none shadow-md shadow-secondary-bg-light outline-none flex flex-col gap-2 p-4"
                         >
                           <Dialog>
                             <DialogTrigger>
-                              <span className="hover:text-slate-700">Transaction Details</span>
+                              <span className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full">
+                                Sales Details
+                              </span>
                             </DialogTrigger>
-                            <PurchaseDetails transactionDetails={item} />
+                            <SalesDetails transactionDetails={item} />
                           </Dialog>
+                          <UpdateTransactionStatus id={item?._id} status={item.status} />
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </td>
@@ -102,7 +106,7 @@ const PurchaseHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta
             <div className="flex flex-col items-center gap-3 text-lg sm:text-2xl font-bold text-center max-w-screen-sm mx-auto px-8">
               <FaBoxOpen className="text-9xl opacity-35" />
               <h1 className=" text-light-secondary-txt dark:text-dark-secondary-txt">
-                No sales yet! 🚀 List your used items today and start selling to eager buyers.
+                You haven&apos;t made any purchases yet! 🛍️ Start exploring our amazing listings and find something you love.
               </h1>
             </div>
           </div>
@@ -112,4 +116,4 @@ const PurchaseHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta
   );
 };
 
-export default PurchaseHistory;
+export default SalesHistory;

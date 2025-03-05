@@ -7,6 +7,7 @@ import { IListing } from "@/types/listing.types";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { BsEye } from "react-icons/bs";
 
 const ListingCard = ({ listing }: { listing: IListing }) => {
   return (
@@ -26,11 +27,9 @@ const ListingCard = ({ listing }: { listing: IListing }) => {
       </CardHeader>
 
       <CardContent className=" p-0 mt-2">
-        <Link href={`/listings/${listing?._id}`} passHref>
-          <CardTitle title={listing?.title} className="font-semibold cursor-pointer text-sm">
-            {listing?.title.length > 20 ? listing?.title?.slice(0, 20) + "..." : listing?.title}
-          </CardTitle>
-        </Link>
+        <CardTitle title={listing?.title} className="font-semibold cursor-pointer text-sm">
+          {listing?.title.length > 20 ? listing?.title?.slice(0, 20) + "..." : listing?.title}
+        </CardTitle>
 
         <div className="flex items-center justify-between my-2">
           <p className="text-sm text-gray-600">
@@ -41,9 +40,13 @@ const ListingCard = ({ listing }: { listing: IListing }) => {
 
       <CardFooter className="block p-0">
         <div className="flex gap-2 items-center justify-between">
-          <Button size="sm" variant="outline" className="w-32">
-            Buy Now
-          </Button>
+          <Link href={`/listings/${listing?._id}`} passHref>
+            <Button size="sm" variant="primary" className="w-32">
+              <BsEye />
+              View Details
+            </Button>
+          </Link>
+
           <Button variant="outline" size="sm" className="w-8 h-8 p-0 flex items-center justify-center rounded-full">
             <Heart />
           </Button>

@@ -1,21 +1,10 @@
 import { TListingDetails } from "./listing.types";
-
-interface IUser {
-  _id: string;
-  fullName: string;
-  email: string;
-  image: string;
-  role: string;
-  isBlocked: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import { TRefUser } from "./user.types";
 
 export interface ITransaction {
   _id: string;
-  buyerID: IUser;
-  sellerID: IUser;
+  buyerID: TRefUser;
+  sellerID: TRefUser;
   listingID: TListingDetails;
   transactionId: string;
   paymentStatus: "pending" | "completed";

@@ -1,3 +1,5 @@
+import { TRefUser } from "./user.types";
+
 export interface IListing {
   _id: string;
   title: string;
@@ -28,18 +30,6 @@ export type TListingDetails = {
   title: string;
   updatedAt: string;
   userId: TRefUser;
-  __v: number;
-  _id: string;
-};
-
-export type TRefUser = {
-  createdAt: string;
-  email: string;
-  fullName: string;
-  image: string;
-  isBlocked: boolean;
-  role: string;
-  updatedAt: string;
   __v: number;
   _id: string;
 };

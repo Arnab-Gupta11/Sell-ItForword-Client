@@ -8,6 +8,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavSidebar from "./NavSidebar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
+import useUser from "@/hooks/useUser";
+import { Button } from "@/components/ui/button";
+import ProfileAvatar from "./ProfileAvatar";
 
 export type TUserProps = {
   user?: {
@@ -24,6 +27,7 @@ export type TNavMenuItem = {
 const Navbar = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const { user } = useUser();
   const menuItems = [
     {
       label: "Home",
@@ -100,15 +104,13 @@ const Navbar = () => {
           <div className="flex items-center">
             <ThemeToggler />
             <NavSidebar menuItems={menuItems} />
-            {/* {session?.user ? (
-              <Button onClick={() => signOut()} className="ml-6">
-                Logout
-              </Button>
+            {user ? (
+              <ProfileAvatar />
             ) : (
-              <Button className="ml-6">
+              <Button variant="primary" className="ml-6">
                 <Link href={"/login"}>Login</Link>
               </Button>
-            )} */}
+            )}
           </div>
         </div>
       </div>

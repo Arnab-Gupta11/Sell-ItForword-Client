@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/services/auth";
 import { IUser } from "@/types/user.types";
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from "react";
 
-interface IUserProviderValues {
+export interface IUserProviderValues {
   user: IUser | null;
   isLoading: boolean;
   setUser: (user: IUser | null) => void;

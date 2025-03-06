@@ -6,44 +6,70 @@ import { Button } from "@/components/ui/button";
 import { BiHome } from "react-icons/bi";
 import { FaBlog, FaProjectDiagram, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
-
-import { signOut } from "next-auth/react";
 import { ThemeToggler } from "@/components/shared/ThemeToggler/ThemeToggler";
 import DashbooardSidebarItem from "./DashboardSidebarItem";
+import useUser from "@/hooks/useUser";
+import { logout } from "@/services/auth";
+import { useRouter } from "next/navigation";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { user, setIsLoading } = useUser();
   const menuItems = [
     {
       label: "Manage Listings",
       path: "/dashboard/user/listings",
-      show: true,
+      show: user?.role === "user",
       Icon: FaBlog, // 📝 Blog Icon
     },
     {
       label: "Track Purchases",
       path: "/dashboard/user/purchase-history",
-      show: true,
+      show: user?.role === "user",
       Icon: FaProjectDiagram, // 📁 Project Icon
     },
     {
       label: "Track Sales",
       path: "/dashboard/user/sales-history",
-      show: true,
+      show: user?.role === "user",
       Icon: FaEnvelope, // ✉️ Message Icon
     },
     {
       label: "Manage Profile",
       path: "/dashboard/user/profile",
-      show: true,
+      show: user?.role === "user",
       Icon: FaEnvelope, // ✉️ Message Icon
     },
     {
       label: "Wishlist",
       path: "/dashboard/user/wishlist",
-      show: true,
+      show: user?.role === "user",
+      Icon: FaEnvelope, // ✉️ Message Icon
+    },
+    {
+      label: "Manage User",
+      path: "/dashboard/admin/user-management",
+      show: user?.role === "admin",
+      Icon: FaEnvelope, // ✉️ Message Icon
+    },
+    {
+      label: "Manage Listings",
+      path: "/dashboard/admin/listings",
+      show: user?.role === "admin",
       Icon: FaEnvelope, // ✉️ Message Icon
     },
   ];
+
+  const handleLogOut = () => {
+    logout();
+    setIsLoading(true);
+    router.push("/");
+    // if (protectedRoutes.some((route) => pathname.match(route))) {
+    //   router.push("/");
+    // }
+  };
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -73,24 +99,46 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Main Content */}
       <div className="flex flex-col flex-1 min-w-0 lg:ml-64">
         {/* Navbar */}
-        <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-4 bg-light-secondary-bg dark:bg-dark-secondary-bg shadow-md">
+        <header className="sticky top-0 z-40 flex items-center justify-between xsm:justify-between px-6 py-4 bg-light-secondary-bg dark:bg-dark-secondary-bg shadow-md">
           <div>
-            <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsSidebarOpen(true)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]"
+              onClick={() => setIsSidebarOpen(true)}
+            >
               <Menu className="w-6 h-6" />
             </Button>
           </div>
-          <div className="flex items-center pl-5 gap-5">
-            <Link className="" href={"/"}>
+          <div className="flex items-center xsm:pl-5 gap-3 xsm:gap-5">
+            <Link href={"/"}>
               <BiHome className="bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a] w-9 h-9 p-2 rounded-md" />
             </Link>
             <ThemeToggler />
+            <div className="mt-1">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="outline-none hover:scale-105 active:scale-95 duration-700">
+                  <Avatar className=" border-2 border-[#e9ebec] dark:border-[#142e3a]">
+                    <AvatarImage src={user ? user?.profileImg : "https://github.com/shadcn.png"} alt="@shadcn" />
+                    <AvatarFallback>DP</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  side="bottom"
+                  className="bg-light-secondary-bg dark:bg-dark-secondary-bg border-none shadow-md shadow-[#e9ebec] dark:shadow-[#142e3a] outline-none "
+                >
+                  <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
+
+                  <DropdownMenuItem>{user?.email}</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             <span
-              onClick={() => signOut()}
+              onClick={handleLogOut}
               className="cursor-pointer bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]  p-1 rounded-md "
             >
               <HiOutlineLogout className=" text-red-600 text-2xl" />
             </span>
-            {/* <ProfileAvatar /> */}
           </div>
         </header>
 

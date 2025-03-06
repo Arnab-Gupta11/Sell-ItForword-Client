@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import useUser from "@/hooks/useUser";
 import { buyListing } from "@/services/transaction";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -37,6 +38,7 @@ type TRefUser = {
 const BuyListings = ({ listingsDetails }: { listingsDetails: IListingDetails }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { user } = useUser();
   const handleBuyNow = async () => {
     try {
       setLoading(true);
@@ -63,7 +65,7 @@ const BuyListings = ({ listingsDetails }: { listingsDetails: IListingDetails }) 
         variant="primary"
         className="flex w-full items-center justify-center gap-3 rounded-lg select-none"
         onClick={handleBuyNow}
-        disabled={loading || listingsDetails.status === "sold"}
+        disabled={loading || listingsDetails.status === "sold" || user?.role === "admin"}
       >
         <MdOutlineShoppingBag />
         <span>{loading ? "Processing..." : "Buy"}</span>

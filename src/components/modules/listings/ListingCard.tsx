@@ -8,10 +8,16 @@ import Link from "next/link";
 import { BsEye } from "react-icons/bs";
 import WishListButton from "./WishListButton";
 import { isListingExistInWishList } from "@/services/wishlist";
+import { getCurrentUser } from "@/services/auth";
 
 const ListingCard = async ({ listing }: { listing: IListing }) => {
-  const checkListingExistInWishlist = await isListingExistInWishList(listing?._id);
-  const isExist = checkListingExistInWishlist?.data;
+  const user = await getCurrentUser();
+  let isExist = false;
+  if (user) {
+    const checkListingExistInWishlist = await isListingExistInWishList(listing?._id);
+    isExist = checkListingExistInWishlist?.data;
+  }
+
   return (
     <Card className="p-3 bg-light-secondary-bg dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
       <CardHeader className="relative p-0 h-48">

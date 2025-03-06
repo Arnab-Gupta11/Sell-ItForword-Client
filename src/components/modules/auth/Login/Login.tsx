@@ -15,9 +15,11 @@ import { loginUser } from "@/services/auth";
 import { ImSpinner10 } from "react-icons/im";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import useUser from "@/hooks/useUser";
 
 const Login = () => {
   const router = useRouter();
+  const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const [form] = useFormHook(loginSchema, loginFormDefaultValue);
@@ -27,6 +29,7 @@ const Login = () => {
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     try {
       const res = await loginUser(data);
+      setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {

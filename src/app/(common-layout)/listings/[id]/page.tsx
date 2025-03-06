@@ -7,6 +7,7 @@ import { formateDateTime } from "@/lib/formateDateTime";
 // import { getCurrentUser } from "@/services/auth";
 import { isListingExistInWishList } from "@/services/wishlist";
 import WishListButton from "@/components/modules/listings/WishListButton";
+import { getCurrentUser } from "@/services/auth";
 // export async function generateMetadata({ params }: { params: Promise<{ projectId: string }> }) {
 //   const { projectId } = await params;
 //   const res = await fetch(`https://portfolio-server-psi-jet.vercel.app/api/v1/projects/${projectId}`);
@@ -19,10 +20,13 @@ import WishListButton from "@/components/modules/listings/WishListButton";
 
 const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  // const user = getCurrentUser();
+  const user = await getCurrentUser();
   const res = await getListingDetails(id);
-  const checkListingExistInWishlist = await isListingExistInWishList(id);
-  const isExist = checkListingExistInWishlist?.data;
+  let isExist = false;
+  if (user) {
+    const checkListingExistInWishlist = await isListingExistInWishList(id);
+    isExist = checkListingExistInWishlist?.data;
+  }
   const { data } = res;
   return (
     <div className="pb-28">

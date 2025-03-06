@@ -41,21 +41,14 @@ const Navbar = () => {
     },
     {
       label: "Dashboard",
-      path: "/dashboard/user/listings",
-      show: true,
-      // path: `${user?.role === "admin" ? "/dashboard/manage-products" : "/dashboard/view-orders"}`,
-      // show: user?.role === "user" || user?.role === "admin",
+      path: `${user?.role === "admin" ? "/dashboard/admin/user-management" : "/dashboard/user/listings"}`,
+      show: user?.role === "user" || user?.role === "admin",
     },
     {
       label: "Contact",
       path: "/contact",
       show: true,
     },
-    // {
-    //   label: "Dashboard",
-    //   path: "/dashboard/blogs",
-    //   show: session?.user ? true : false,
-    // },
   ];
   const handleChangeBackgroundOnScroll = () => {
     if (window.scrollY > 0) {

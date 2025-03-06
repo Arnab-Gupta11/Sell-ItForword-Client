@@ -30,7 +30,7 @@ const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
         imageData = await imageUpload(fileImage);
       }
       const updatedUserDetails = {
-        fullName: data.name || userInfo?.fullName,
+        fullName: data.fullName || userInfo?.fullName,
         image: imageData || userInfo?.image,
         phone: data.phone || String(userInfo?.phone),
         city: data.city || userInfo?.city,
@@ -80,14 +80,8 @@ const ManageProfile = ({ userInfo }: { userInfo: TRefUser }) => {
               </div>
               <div className="w-full bs:w-1/2">
                 <Label>Your Name</Label>
-                <Input
-                  type="text"
-                  defaultValue={userInfo?.fullName}
-                  placeholder="Enter You Full Name"
-                  className="mt-1.5"
-                  {...register("fullName", { required: true })}
-                />
-                {errors.brand && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Name is required</span>}
+                <Input type="text" defaultValue={userInfo?.fullName} placeholder="Enter You Full Name" className="mt-1.5" {...register("fullName")} />
+                {errors.fullName && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Name is required</span>}
               </div>
             </div>
             {/* form row */}

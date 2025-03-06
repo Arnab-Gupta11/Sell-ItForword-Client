@@ -10,7 +10,6 @@ import { ITransaction } from "@/types/transaction.types";
 import { formatMongoDateToDate } from "@/lib/formateDate";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import SalesDetails from "./SalesDetails";
-import { FaBoxOpen } from "react-icons/fa";
 import UpdateTransactionStatus from "./UpdateTransactionStatus";
 const SalesHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta }) => {
   return (

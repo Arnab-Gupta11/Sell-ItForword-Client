@@ -37,6 +37,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       show: true,
       Icon: FaEnvelope, // ✉️ Message Icon
     },
+    {
+      label: "Wishlist",
+      path: "/dashboard/user/wishlist",
+      show: true,
+      Icon: FaEnvelope, // ✉️ Message Icon
+    },
   ];
   return (
     <div className="flex h-screen">

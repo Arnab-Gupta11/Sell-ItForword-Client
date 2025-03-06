@@ -16,12 +16,16 @@ import { ImSpinner10 } from "react-icons/im";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import useUser from "@/hooks/useUser";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const router = useRouter();
   const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirectPath");
+  const [redirect, setRedirect] = useState<string | null>(null);
+  useEffect(() => {
+    setRedirect(searchParams.get("redirectPath"));
+  }, [searchParams]);
   const [form] = useFormHook(loginSchema, loginFormDefaultValue);
   const {
     formState: { isSubmitting },

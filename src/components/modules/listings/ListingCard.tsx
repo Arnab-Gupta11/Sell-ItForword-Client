@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { IListing, TListingDetails } from "@/types/listing.types";
+import { TListingDetails } from "@/types/listing.types";
 import Image from "next/image";
 import Link from "next/link";
 import { BsEye } from "react-icons/bs";

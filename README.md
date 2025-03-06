@@ -1,25 +1,42 @@
-# Portfolio Website
+# 🌟 SellItForword - SecondHand 🛒 (Marketplace for Buying & Selling Used Items)
 
 ## Live Demo
 
-[Click here to view the live application](https://portfolio-client-mocha.vercel.app/)
+[Click here to view the live application](https://sellit-forword-client.vercel.app/)
 
 ## Features
 
-The frontend is built with **Next.js and TypeScript**, offering a modern, responsive, and interactive user experience.
+SellItForword is a marketplace for buying and selling used items. This repository contains the frontend code for the platform, built using Next.js, TypeScript, and Tailwind CSS.
 
-- 🏠 **Home Page** – Introduces the portfolio with a bio, profile picture, skills showcase, and a resume download option.
-- 📂 **Projects Page** – Displays a collection of projects with images, descriptions, and direct links to live demos. Each project has a dedicated details page.
-- 📝 **Blog Page** – Lists blog posts fetched from an API, allowing users to read detailed articles.
-- 📩 **Contact Page** – Includes a simple form to send messages, which are stored in the database.
-- 🔐 **Dashboard (Protected)** – Authenticated users can manage blogs, projects, and messages via a dedicated admin panel.
+### User Authentication
+
+- Custom login system using **email/phone number** and password.
+- JWT-based authentication for secure login sessions.
+- Password hashing with bcrypt.
+
+### User Dashboard
+
+- **Post an Item for Sale**: Users can list used items with descriptions, images, pricing, and categories.
+- **Manage Listings**: Update and remove item listings.
+- **Track Sales & Purchases**: View purchase history and sales history.
+- **Profile Management**: Edit personal details.
+- **Wishlist Feature**: Save items for later.
+
+### Listings and Search
+
+- Users can **list items** for sale with details like price, condition, images, and category.
+- **Search & Filter**: Powerful filtering system based on category, price, condition, and location.
+- **Mark as Sold**: Sellers can update item status after a sale.
+
+### Admin Features
+
+- **User Management**: Ban/unban users.
+- **Listing Management**: Delete inappropriate listings.
 
 ## Technology Stack
 
 - Next.js
 - Tailwind CSS
-- Redux Toolkit
-- Framer Motion
 - React Icons
 - Shadcn Ui
 - Typscript
@@ -36,20 +53,20 @@ The frontend is built with **Next.js and TypeScript**, offering a modern, respon
 #### **1. Clone the Repository**
 
 ```bash
-https://github.com/Arnab-Gupta11/Portfolio-client.git
-cd Portfolio-client
+https://github.com/Arnab-Gupta11/Sell-ItForword-Client.git
+cd Sell-ItForword-Client
 ```
 
 #### **2. Install Dependencies**
 
 ```bash
-npm install
+yarn install
 ```
 
 #### **3. Start the development server**
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 ## ✨ **Contact**

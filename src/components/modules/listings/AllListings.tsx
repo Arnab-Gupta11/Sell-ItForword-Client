@@ -1,10 +1,10 @@
-import { IListing } from "@/types/listing.types";
+import { TListingDetails } from "@/types/listing.types";
 import FilterSidebar from "./FilterSidebar";
 import ListingCard from "./ListingCard";
 import SearchListings from "./SearchListings";
 import FilterResponsiveSidebar from "./FilterResponsiveSidebar";
 
-const AllListings = ({ listings }: { listings: IListing[] }) => {
+const AllListings = ({ listings }: { listings: TListingDetails[] }) => {
   return (
     <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8 xl:px-0">
       <div className="grid grid-cols-1 bs:grid-cols-12 gap-5 pt-20 pb-24">

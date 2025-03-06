@@ -1,4 +1,4 @@
-import { IListing } from "@/types/listing.types";
+import { TListingDetails } from "@/types/listing.types";
 
 import CategoryListingFilterSidebar from "./CategoryListingFilterSidebar";
 import ListingCard from "../../listings/ListingCard";
@@ -6,7 +6,7 @@ import SearchListings from "../../listings/SearchListings";
 import CategoryListingFilterResponsiveSidebar from "./CategoryListingFilterResponsiveSidebar";
 import { FaBoxOpen } from "react-icons/fa";
 
-const AllListingsByCategory = ({ listings }: { listings: IListing[] }) => {
+const AllListingsByCategory = ({ listings }: { listings: TListingDetails[] }) => {
   return (
     <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8 xl:px-0">
       {/* {listings?.length === 0 ? (

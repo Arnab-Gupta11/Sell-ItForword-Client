@@ -1,10 +1,12 @@
-
 import Login from "@/components/modules/auth/Login/Login";
+import { Suspense } from "react";
 
 const LoginPage = () => {
   return (
     <div className="">
-      <Login />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Login />
+      </Suspense>
     </div>
   );
 };

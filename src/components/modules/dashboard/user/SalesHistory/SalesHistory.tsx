@@ -39,7 +39,7 @@ const SalesHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta })
                   <td className="px-4 py-2 border border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?._id}</td>
                   <td className="px-4 py-2 border w-32  border-[#e9ebec] dark:border-[#142e3a]">
                     <Image
-                      src={"https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
+                      src={item?.listingID?.image || "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
                       width={20}
                       height={20}
                       alt="Listing Image"

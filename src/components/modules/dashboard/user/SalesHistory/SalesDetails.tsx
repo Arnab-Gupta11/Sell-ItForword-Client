@@ -14,10 +14,10 @@ const SalesDetails = ({ transactionDetails }: { transactionDetails: ITransaction
         <div className="flex flex-col gap-5 rounded-lg p-4 dark:bg-dark-secondary-bg border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
           <div className="w-full flex justify-center bg-light-primary-bg dark:bg-dark-primary-bg rounded-md">
             <Image
-              src={"https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
+              src={transactionDetails?.listingID?.image || "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
               width={200}
               height={200}
-              alt={transactionDetails?.listingID?.title}
+              alt={"listing image"}
               className=" object-cover rounded-md p-3"
             />
           </div>

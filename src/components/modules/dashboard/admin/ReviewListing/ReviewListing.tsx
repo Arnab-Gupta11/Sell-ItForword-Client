@@ -2,16 +2,11 @@
 "use client";
 import { BsThreeDots } from "react-icons/bs";
 
-import React, { useState } from "react";
-import { Plus, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Swal from "sweetalert2";
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { IListing } from "@/types/listing.types";
+import { TListingDetails } from "@/types/listing.types";
 import { formatPrice } from "@/lib/formatePrice";
 import toast from "react-hot-toast";
 import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmationModal";
@@ -19,12 +14,12 @@ import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { deleteListing } from "@/services/listing";
 import { MdOutlineDelete } from "react-icons/md";
-const ReviewListing = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
+const ReviewListing = ({ listings, meta }: { listings: TListingDetails[]; meta: TMeta }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const handleDelete = (data: IListing) => {
+  const handleDelete = (data: TListingDetails) => {
     setSelectedId(data?._id);
     setSelectedItem(data?.title);
     setModalOpen(true);
@@ -64,11 +59,11 @@ const ReviewListing = ({ listings, meta }: { listings: IListing[]; meta: TMeta }
             </tr>
           </thead>
           <tbody>
-            {listings?.map((item: IListing) => (
+            {listings?.map((item: TListingDetails) => (
               <tr key={item?._id} className="hover:bg-light-primary-bg dark:hover:bg-dark-primary-bg">
                 <td className="px-4 py-2 border w-32  border-[#e9ebec] dark:border-[#142e3a]">
                   <Image
-                    src={"https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
+                    src={item?.image || "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
                     width={20}
                     height={20}
                     alt="Listing Image"

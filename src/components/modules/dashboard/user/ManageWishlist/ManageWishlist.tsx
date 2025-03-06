@@ -59,7 +59,7 @@ const ManageWishlist = ({ result }: { result: TListingDetails[] }) => {
                 <tr key={item?._id} className="hover:bg-light-primary-bg dark:hover:bg-dark-primary-bg">
                   <td className="px-4 py-2 border w-32  border-[#e9ebec] dark:border-[#142e3a]">
                     <Image
-                      src={"https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
+                      src={item?.image || "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
                       width={20}
                       height={20}
                       alt="Listing Image"

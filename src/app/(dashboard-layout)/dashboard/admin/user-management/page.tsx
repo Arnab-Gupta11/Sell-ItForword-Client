@@ -4,7 +4,6 @@ import { FaBoxOpen } from "react-icons/fa";
 
 const ManageUserPage = async () => {
   const res = await getAllUsers();
-  console.log(res?.data);
   return (
     <div>
       {res?.data && res?.data?.length > 0 ? (

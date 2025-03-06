@@ -8,6 +8,15 @@ import { BiLoaderCircle } from "react-icons/bi";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { sendMessage } from "@/services/message";
+
+export type TMessage = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
 
@@ -27,11 +36,11 @@ const ContactForm = () => {
         email: data.email,
         message: data.message,
       };
-      // const res = await addNewMessage(messageInfo).unwrap();
-      // if (res?.success === true) {
-      //   toast.success(res?.message);
-      //   reset();
-      // }
+      const res = await sendMessage(messageInfo);
+      if (res?.success === true) {
+        toast.success(res?.message);
+        reset();
+      }
     } catch (err: any) {
       toast.error(err?.data?.message);
     } finally {

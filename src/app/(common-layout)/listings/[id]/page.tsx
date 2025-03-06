@@ -34,7 +34,7 @@ const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) =
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10">
           <div className="bg-[#F7F7F7] rounded-t-lg h-[450px] flex justify-center rounded-lg">
             <Image
-              src={"https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
+              src={data?.image || "https://psediting.websites.co.in/obaju-turquoise/img/product-placeholder.png"}
               width={500}
               height={500}
               alt={"img"}

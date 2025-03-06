@@ -202,7 +202,7 @@ const AddListingForm = () => {
           {/* button */}
           <div className=" mt-8 ">
             <Button variant="primary" type="submit" disabled={loading} className="sm-mx:w-full w-32">
-              {loading ? <ImSpinner10 className="animate-spin" /> : "Add Product"}
+              {loading ? <ImSpinner10 className="animate-spin" /> : "Add Listing"}
             </Button>
           </div>
         </form>

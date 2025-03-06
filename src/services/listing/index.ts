@@ -97,12 +97,6 @@ export const getAllListingsByCategory = async (
   if (query?.maxPrice) {
     params.append("maxPrice", query?.maxPrice.toString());
   }
-
-  // if (query?.category && Array.isArray(query?.category)) {
-  //   query.category.forEach((category) => {
-  //     params.append("category[]", category);
-  //   });
-  // }
   if (query?.city) {
     params.append("city", query?.city.toString());
   }
@@ -112,7 +106,6 @@ export const getAllListingsByCategory = async (
   if (query?.searchTerm) {
     params.append("searchTerm", query?.searchTerm.toString());
   }
-
 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/categories/${category}/?limit=${limit}&page=${page}&${params}`, {
@@ -169,6 +162,26 @@ export const deleteListing = async (listingId: string): Promise<any> => {
     });
     revalidateTag("LISTING");
     return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+
+export const UpdateListingsStatus = async (id: string): Promise<any> => {
+  const token = await getValidToken();
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/status/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    revalidateTag("LISTING");
+    const result = res.json();
+
+    return result;
   } catch (error: any) {
     return Error(error);
   }

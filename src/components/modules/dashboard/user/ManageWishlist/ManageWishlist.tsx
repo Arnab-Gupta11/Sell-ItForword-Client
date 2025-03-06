@@ -1,10 +1,6 @@
 "use client";
-import { BsEye, BsThreeDots } from "react-icons/bs";
 import Image from "next/image";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { formatPrice } from "@/lib/formatePrice";
-import { formatMongoDateToDate } from "@/lib/formateDate";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { TListingDetails } from "@/types/listing.types";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { MdOutlineRemoveRedEye } from "react-icons/md";

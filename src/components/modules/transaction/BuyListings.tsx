@@ -63,7 +63,7 @@ const BuyListings = ({ listingsDetails }: { listingsDetails: IListingDetails }) 
         variant="primary"
         className="flex w-full items-center justify-center gap-3 rounded-lg select-none"
         onClick={handleBuyNow}
-        disabled={loading}
+        disabled={loading || listingsDetails.status === "sold"}
       >
         <MdOutlineShoppingBag />
         <span>{loading ? "Processing..." : "Buy"}</span>

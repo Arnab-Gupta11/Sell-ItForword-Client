@@ -18,6 +18,7 @@ import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmati
 import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { deleteListing } from "@/services/listing";
+import UpdateSalesStatus from "./UpdateSalesStatus";
 const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -67,6 +68,7 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
               <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Title</th>
               <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Category</th>
               <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Price</th>
+              <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Status</th>
               <th className="px-4 py-2 text-left border border-[#e9ebec] dark:border-[#142e3a]">Action</th>
             </tr>
           </thead>
@@ -85,6 +87,15 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
                 <td className="px-4 py-2 border border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.title}</td>
                 <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.category}</td>
                 <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{formatPrice(item?.price)}</td>
+                <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">
+                  {item?.status === "available" ? (
+                    <span className="bg-[#d9ffd5] border-2 border-green-300 text-green-600 px-2 py-0.5 text-sm font-semibold rounded-lg">
+                      Available
+                    </span>
+                  ) : (
+                    <span className="bg-[#ffeef3] border-2 border-red-400 text-red-500 px-2 py-0.5 text-sm font-semibold rounded-lg">Sold</span>
+                  )}
+                </td>
                 <td className="px-4 py-2 border w-20  dark:border-[#232935] border-slate-300">
                   <DropdownMenu>
                     <DropdownMenuTrigger className="outline-none hover:scale-105 active:scale-95 duration-700">
@@ -94,18 +105,17 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
                       side="bottom"
                       className="bg-[#f7fbfe] dark:bg-[#101624] border-none shadow-md shadow-secondary-bg-light outline-none p-2 flex flex-col gap-2"
                     >
-                      <Link href={`/dashboard/user/listings/${item?._id}`}>
-                        <span className="text-light-primary-txt dark:text-dark-primary-txt hover:text-primary dark:hover:text-primary cursor-pointer">
-                          Update
-                        </span>
-                      </Link>
+                      <span className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full">
+                        <Link href={`/dashboard/user/listings/${item?._id}`}>Update</Link>
+                      </span>
 
                       <span
                         onClick={() => handleDelete(item)}
-                        className="text-light-primary-txt dark:text-dark-primary-txt hover:text-primary dark:hover:text-primary cursor-pointer"
+                        className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full"
                       >
                         Delete
                       </span>
+                      <UpdateSalesStatus id={item._id} status={item?.status} />
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </td>

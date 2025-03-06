@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import useUser from "@/hooks/useUser";
 import { buyListing } from "@/services/transaction";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -38,9 +38,14 @@ type TRefUser = {
 const BuyListings = ({ listingsDetails }: { listingsDetails: IListingDetails }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const { user } = useUser();
   const handleBuyNow = async () => {
     try {
+      if (!user) {
+        router.push(`/login?redirectPath=${pathname}`);
+        return;
+      }
       setLoading(true);
       const res = await buyListing({ listingId: listingsDetails?._id });
       if (res?.success) {

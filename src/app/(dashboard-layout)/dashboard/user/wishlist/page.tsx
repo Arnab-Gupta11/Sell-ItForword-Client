@@ -6,7 +6,6 @@ import { FaBoxOpen } from "react-icons/fa";
 const WishlistPage = async () => {
   const user = await getCurrentUser();
   const res = await getWishList(user.userId);
-  console.log(res?.data?.listings);
   return (
     <div>
       {res?.data && res?.data?.listings?.length > 0 ? (

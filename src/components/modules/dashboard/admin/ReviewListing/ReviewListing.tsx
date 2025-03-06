@@ -18,8 +18,8 @@ import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmati
 import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { deleteListing } from "@/services/listing";
-import UpdateSalesStatus from "./UpdateSalesStatus";
-const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
+import { MdOutlineDelete } from "react-icons/md";
+const ReviewListing = ({ listings, meta }: { listings: IListing[]; meta: TMeta }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -49,17 +49,8 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
   return (
     <div>
       <div className="mb-5 flex flex-col xs:flex-row items-center xs:justify-between gap-5">
-        <h1 className="text-2xl font-semibold text-light-primary-txt dark:text-dark-primary-txt">Manage Listings</h1>
-        <Link href="/dashboard/user/listings/add-listing">
-          <Button variant="primary">
-            <Plus />
-            <span>Add Listitng</span>
-          </Button>
-        </Link>
+        <h1 className="text-2xl font-semibold text-light-primary-txt dark:text-dark-primary-txt">Review Listings</h1>
       </div>
-      {/* {isLoading || isFetching ? (
-        <Loader />
-      ) : ( */}
       <div className="overflow-x-auto rounded-xl  pb-10">
         <table className="w-full border border-[#e9ebec] dark:border-[#142e3a] mb-5 select-none -z-10">
           <thead className="bg-light-primary-bg dark:bg-dark-primary-bg">
@@ -105,17 +96,13 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
                       side="bottom"
                       className="bg-[#f7fbfe] dark:bg-[#101624] border-none shadow-md shadow-secondary-bg-light outline-none p-2 flex flex-col gap-2"
                     >
-                      <span className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full">
-                        <Link href={`/dashboard/user/listings/${item?._id}`}>Update</Link>
-                      </span>
-
                       <span
                         onClick={() => handleDelete(item)}
-                        className="hover:text-red-500 border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full"
+                        className="hover:text-red-500 border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full cursor-pointer flex items-center gap-1"
                       >
+                        <MdOutlineDelete />
                         Delete
                       </span>
-                      <UpdateSalesStatus id={item._id} status={item?.status} />
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </td>
@@ -132,4 +119,4 @@ const ManageListings = ({ listings, meta }: { listings: IListing[]; meta: TMeta 
   );
 };
 
-export default ManageListings;
+export default ReviewListing;

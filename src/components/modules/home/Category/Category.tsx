@@ -43,10 +43,12 @@ const Category = () => {
     <div className="pt-14 pb-20">
       <div className="flex items-center justify-between flex-wrap gap-5">
         <h1 className="text-2xl sm:text-3xl font-semibold ">Browse By Category</h1>
-        <Button variant="primary" className="flex items-center gap-2 text-white">
-          <span className="font-medium">View All</span>
-          <FaAngleRight />
-        </Button>
+        <Link href={"/listings"}>
+          <Button variant="primary" className="flex items-center gap-2 text-white">
+            <span className="font-medium">View All</span>
+            <FaAngleRight />
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 bs:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5 mt-12">
         {listingCategoriesWithIcons.map(({ Icon, category }) => (

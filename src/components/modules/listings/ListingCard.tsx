@@ -7,6 +7,7 @@ import { BsEye } from "react-icons/bs";
 import WishListButton from "./WishListButton";
 import { isListingExistInWishList } from "@/services/wishlist";
 import { getCurrentUser } from "@/services/auth";
+import { formatPrice } from "@/lib/formatePrice";
 
 const ListingCard = async ({ listing }: { listing: IListing }) => {
   const user = await getCurrentUser();
@@ -39,7 +40,7 @@ const ListingCard = async ({ listing }: { listing: IListing }) => {
 
         <div className="flex items-center justify-between my-2">
           <p className="text-sm text-gray-600">
-            <span className="font-semibold">$ {listing?.price.toFixed(2)}</span>
+            <span className="font-semibold">{formatPrice(listing?.price)}</span>
           </p>
         </div>
       </CardContent>

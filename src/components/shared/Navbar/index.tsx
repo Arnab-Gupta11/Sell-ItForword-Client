@@ -11,7 +11,8 @@ import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import useUser from "@/hooks/useUser";
 import { Button } from "@/components/ui/button";
 import ProfileAvatar from "./ProfileAvatar";
-
+import logo from "@/assets/logo/Logo1.png";
+import Image from "next/image";
 export type TUserProps = {
   user?: {
     name?: string | null | undefined;
@@ -71,7 +72,8 @@ const Navbar = () => {
         <div>
           <div className="hidden xs:flex">
             <h1 className="text-light-primary-txt dark:text-dark-primary-txt text-4xl font-bold">
-              A<span className="text-primary">G</span>
+              {/* A<span className="text-primary">G</span> */}
+              <Image src={logo} alt={"Logo"} width={200} className={"h-auto"} priority />
             </h1>
           </div>
         </div>

@@ -46,43 +46,86 @@ export const UpdateListing = async (id: string, listingData: Partial<TListingDet
   }
 };
 // get all products
+// export const getAllListings = async (page?: string, limit?: string, query?: { [key: string]: string | string[] | undefined }) => {
+//   const params = new URLSearchParams();
+
+//   if (query?.minPrice) {
+//     params.append("minPrice", query?.minPrice.toString());
+//   }
+//   if (query?.maxPrice) {
+//     params.append("maxPrice", query?.maxPrice.toString());
+//   }
+
+//   if (query?.category && Array.isArray(query?.category)) {
+//     query.category.forEach((category) => {
+//       params.append("category[]", category);
+//     });
+//   }
+//   if (query?.city) {
+//     params.append("city", query?.city.toString());
+//   }
+//   if (query?.condition) {
+//     params.append("condition", query?.condition.toString());
+//   }
+//   if (query?.searchTerm) {
+//     params.append("searchTerm", query?.searchTerm.toString());
+//   }
+
+//   try {
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?limit=${limit}&page=${page}&${params}`, {
+//       next: {
+//         tags: ["LISTING"],
+//       },
+//     });
+//     const data = await res.json();
+//     return data;
+//   } catch (error: any) {
+//     return Error(error.message);
+//   }
+// };
+
 export const getAllListings = async (page?: string, limit?: string, query?: { [key: string]: string | string[] | undefined }) => {
   const params = new URLSearchParams();
 
   if (query?.minPrice) {
-    params.append("minPrice", query?.minPrice.toString());
+    params.append("minPrice", query.minPrice.toString());
   }
   if (query?.maxPrice) {
-    params.append("maxPrice", query?.maxPrice.toString());
+    params.append("maxPrice", query.maxPrice.toString());
   }
 
-  if (query?.category && Array.isArray(query?.category)) {
-    query.category.forEach((category) => {
-      params.append("category[]", category);
-    });
+  if (query?.category) {
+    if (Array.isArray(query.category)) {
+      query.category.forEach((category) => params.append("category", category));
+    } else {
+      params.append("category", query.category);
+    }
   }
+
   if (query?.city) {
-    params.append("city", query?.city.toString());
+    params.append("city", query.city.toString());
   }
   if (query?.condition) {
-    params.append("condition", query?.condition.toString());
+    params.append("condition", query.condition.toString());
   }
   if (query?.searchTerm) {
-    params.append("searchTerm", query?.searchTerm.toString());
+    params.append("searchTerm", query.searchTerm.toString());
   }
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?limit=${limit}&page=${page}&${params}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?limit=${limit}&page=${page}&${params.toString()}`, {
       next: {
         tags: ["LISTING"],
       },
     });
+
     const data = await res.json();
     return data;
   } catch (error: any) {
     return Error(error.message);
   }
 };
+
 export const getAllListingsByCategory = async (
   category: string,
   page?: string,

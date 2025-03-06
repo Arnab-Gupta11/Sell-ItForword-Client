@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div>
       <Banner />
-      <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8">
+      <div className="max-w-screen-xl mx-auto px-5 xsm:px-5 bs:px-8">
         <Category />
         <FAQ />
       </div>

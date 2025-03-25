@@ -1,7 +1,10 @@
 import Banner from "@/components/modules/home/Banner/Banner";
 import Category from "@/components/modules/home/Category/Category";
 import FAQ from "@/components/modules/home/FAQ/FAQ";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "SellItForword | Home",
+};
 const HomePage = () => {
   return (
     <div>

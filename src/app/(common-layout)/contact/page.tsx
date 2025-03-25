@@ -1,13 +1,30 @@
 import ContactForm from "@/components/modules/contact/ContactForm";
+import PageHeader from "@/components/shared/PageHeader/PageHeader";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Metadata } from "next";
+import Link from "next/link";
 import { IoCall, IoMailUnreadSharp } from "react-icons/io5";
 export const metadata: Metadata = {
-  title: "AG | Contact",
-  description: "Portfolio",
+  title: "SellItForword | Contact Us",
 };
 const ContactPage = () => {
   return (
     <div>
+      <PageHeader title="Contact Us">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <Link href="/" className="hover:text-primary">
+                Home
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Contact</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageHeader>
       <div className=" pb-20">
         <div className="grid grid-cols-1 md:grid-cols-5 max-w-screen-lg items-center mx-auto gap-3 px-3 xs:px-5 md:px-10 xl:px-0 pt-32 justify-center">
           <div className="md:col-span-2">

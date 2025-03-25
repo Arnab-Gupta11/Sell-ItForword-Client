@@ -4,7 +4,6 @@ import { ReactNode, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BiHome } from "react-icons/bi";
-import { FaBlog, FaProjectDiagram, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 import { ThemeToggler } from "@/components/shared/ThemeToggler/ThemeToggler";
 import DashbooardSidebarItem from "./DashboardSidebarItem";
@@ -13,6 +12,9 @@ import { logout } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import logo from "@/assets/logo/Logo1.png";
+import Image from "next/image";
+import { FaList, FaShoppingCart, FaChartLine, FaUser, FaHeart, FaUsers, FaClipboardList } from "react-icons/fa";
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,43 +24,43 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       label: "Manage Listings",
       path: "/dashboard/user/listings",
       show: user?.role === "user",
-      Icon: FaBlog, // 📝 Blog Icon
+      Icon: FaList, // 📋 List Icon (for managing listings)
     },
     {
       label: "Track Purchases",
       path: "/dashboard/user/purchase-history",
       show: user?.role === "user",
-      Icon: FaProjectDiagram, // 📁 Project Icon
+      Icon: FaShoppingCart, // 🛒 Shopping Cart Icon (for purchase history)
     },
     {
       label: "Track Sales",
       path: "/dashboard/user/sales-history",
       show: user?.role === "user",
-      Icon: FaEnvelope, // ✉️ Message Icon
+      Icon: FaChartLine, // 📈 Chart Icon (for tracking sales)
     },
     {
       label: "Manage Profile",
       path: "/dashboard/user/profile",
       show: user?.role === "user",
-      Icon: FaEnvelope, // ✉️ Message Icon
+      Icon: FaUser, // 👤 User Icon (for profile management)
     },
     {
       label: "Wishlist",
       path: "/dashboard/user/wishlist",
       show: user?.role === "user",
-      Icon: FaEnvelope, // ✉️ Message Icon
+      Icon: FaHeart, // ❤️ Heart Icon (for wishlist)
     },
     {
       label: "Manage User",
       path: "/dashboard/admin/user-management",
       show: user?.role === "admin",
-      Icon: FaEnvelope, // ✉️ Message Icon
+      Icon: FaUsers, // 👥 Users Icon (for user management)
     },
     {
       label: "Manage Listings",
       path: "/dashboard/admin/listings",
       show: user?.role === "admin",
-      Icon: FaEnvelope, // ✉️ Message Icon
+      Icon: FaClipboardList, // 📋 Clipboard Icon (for listing management)
     },
   ];
 
@@ -81,7 +83,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div className="flex items-center justify-between p-4 ">
           <div className="ml-5">
             <span className="text-light-primary-txt dark:text-dark-primary-txt text-4xl font-bold">
-              A<span className="text-primary">G</span>
+              <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
             </span>
           </div>
 

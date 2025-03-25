@@ -5,7 +5,8 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TNavMenuItem } from ".";
-
+import Image from "next/image";
+import logo from "@/assets/logo/Logo1.png";
 const NavSidebar = ({ menuItems }: { menuItems: TNavMenuItem }) => {
   const pathname = usePathname();
   return (
@@ -18,7 +19,7 @@ const NavSidebar = ({ menuItems }: { menuItems: TNavMenuItem }) => {
           <SheetHeader>
             <SheetTitle className="flex items-start pl-6 mb-6">
               <span className="text-light-primary-txt dark:text-dark-primary-txt text-4xl font-bold">
-                A<span className="text-primary">G</span>
+                <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
               </span>
             </SheetTitle>
             <SheetDescription className="flex flex-col gap-4 items-start justify-start pl-7">

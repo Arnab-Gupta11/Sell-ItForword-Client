@@ -8,15 +8,16 @@ import { formateDateTime } from "@/lib/formateDateTime";
 import { isListingExistInWishList } from "@/services/wishlist";
 import WishListButton from "@/components/modules/listings/WishListButton";
 import { getCurrentUser } from "@/services/auth";
-// export async function generateMetadata({ params }: { params: Promise<{ projectId: string }> }) {
-//   const { projectId } = await params;
-//   const res = await fetch(`https://portfolio-server-psi-jet.vercel.app/api/v1/projects/${projectId}`);
-//   const project = await res.json();
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const res = await fetch(`https://sell-itforword-server.vercel.app/api/v1//listings/${id}`);
+  const result = await res.json();
 
-//   return {
-//     title: project?.data?.name,
-//   };
-// }
+  return {
+    title: result?.data?.title,
+    description: result?.data?.description,
+  };
+}
 
 const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

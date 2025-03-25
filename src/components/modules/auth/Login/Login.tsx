@@ -17,7 +17,8 @@ import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import useUser from "@/hooks/useUser";
 import { useEffect, useState } from "react";
-
+import Image from "next/image";
+import logo from "@/assets/logo/Logo1.png";
 const Login = () => {
   const router = useRouter();
   const { setIsLoading } = useUser();
@@ -32,7 +33,11 @@ const Login = () => {
   } = form;
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     try {
-      const res = await loginUser(data);
+      const userInfo = {
+        email: data.email,
+        password: data.password,
+      };
+      const res = await loginUser(userInfo);
       setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
@@ -55,7 +60,7 @@ const Login = () => {
         <CardHeader>
           <CardTitle className="mx-auto">
             {/* <Logo width={200} /> */}
-            <h1>SellItForword</h1>
+            <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
           </CardTitle>
           <CardDescription className="text-center text-sm font-medium text-light-secondary-txt dark:text-dark-secondary-txt">
             Welcome back! Log in to access your account and stay connected.

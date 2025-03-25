@@ -73,7 +73,7 @@ const Navbar = () => {
           <div className="hidden xs:flex">
             <h1 className="text-light-primary-txt dark:text-dark-primary-txt text-4xl font-bold">
               {/* A<span className="text-primary">G</span> */}
-              <Image src={logo} alt={"Logo"} width={200} className={"h-auto"} priority />
+              <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} priority />
             </h1>
           </div>
         </div>

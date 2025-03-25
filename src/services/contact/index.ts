@@ -1,37 +1,37 @@
 "use server";
 
-import { TMessage } from "@/components/modules/contact/ContactForm";
+import { TContactMessage } from "@/components/modules/contact/ContactForm";
 import { getValidToken } from "@/lib/verifyToken";
 import { revalidateTag } from "next/cache";
 
-export const sendMessage = async (messageData: TMessage): Promise<any> => {
+export const sendContactMessage = async (contactData: TContactMessage): Promise<any> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/message`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(messageData),
+      body: JSON.stringify(contactData),
     });
 
-    revalidateTag("MESSAGE");
-    const result = res.json();
-
+    revalidateTag("CONTACT");
+    const result = await res.json();
     return result;
   } catch (error: any) {
     return Error(error);
   }
 };
-export const getAllMessages = async () => {
+
+export const getAllContacts = async () => {
   const token = await getValidToken();
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/message`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/contact`, {
       method: "GET",
       headers: {
         Authorization: token,
       },
       next: {
-        tags: ["MESSAGE"],
+        tags: ["CONTACT"],
       },
     });
     const data = await res.json();

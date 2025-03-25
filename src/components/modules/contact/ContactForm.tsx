@@ -8,9 +8,9 @@ import { BiLoaderCircle } from "react-icons/bi";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { sendMessage } from "@/services/message";
+import { sendContactMessage } from "@/services/contact";
 
-export type TMessage = {
+export type TContactMessage = {
   name: string;
   email: string;
   phone: string;
@@ -36,7 +36,7 @@ const ContactForm = () => {
         email: data.email,
         message: data.message,
       };
-      const res = await sendMessage(messageInfo);
+      const res = await sendContactMessage(messageInfo);
       if (res?.success === true) {
         toast.success(res?.message);
         reset();

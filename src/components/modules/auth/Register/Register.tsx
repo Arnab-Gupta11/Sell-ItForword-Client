@@ -13,7 +13,8 @@ import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/auth";
 import toast from "react-hot-toast";
 import { ImSpinner10 } from "react-icons/im";
-
+import Image from "next/image";
+import logo from "@/assets/logo/Logo1.png";
 const Register = () => {
   const router = useRouter();
   const [form] = useFormHook(registerSchema, registerFormDefaultValue);
@@ -23,7 +24,13 @@ const Register = () => {
 
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
     try {
-      const res = await registerUser(data);
+      const userInfo = {
+        fullName: data.fullName,
+        email: data.email,
+        password: data.password,
+        confirmedPassword: data.confirmedPassword,
+      };
+      const res = await registerUser(userInfo);
       // setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
@@ -41,7 +48,7 @@ const Register = () => {
         <CardHeader>
           <CardTitle className="mx-auto">
             {/* <Logo width={200} /> */}
-            <h1>Logo</h1>
+            <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
           </CardTitle>
           <CardDescription className="text-center text-sm font-medium text-light-secondary-txt dark:text-dark-secondary-txt">
             Create your account to explore jobs and grow your career.

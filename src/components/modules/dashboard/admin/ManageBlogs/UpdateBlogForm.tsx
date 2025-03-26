@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import imageUpload from "@/lib/imageUpload";
 import { TBlog } from "@/types/blog.types";
-import { UpdateBlog } from "@/services/blog";
+import { updateBlog } from "@/services/blog";
 const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -38,7 +38,7 @@ const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
         category: data.category || blogs.category,
         content: data.content || blogs.content,
       };
-      const res = await UpdateBlog(blogs?._id, blogInfo);
+      const res = await updateBlog(blogs?._id, blogInfo);
       if (res?.success) {
         toast.success(res?.message);
         reset();

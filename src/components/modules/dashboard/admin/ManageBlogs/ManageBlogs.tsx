@@ -12,8 +12,10 @@ import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmati
 import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { TBlog } from "@/types/blog.types";
-import { deleteBlog } from "@/services/blog";
+import { deleteBlog, updateBlogStatus } from "@/services/blog";
+import { BiLoaderCircle } from "react-icons/bi";
 const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -40,6 +42,21 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
     }
   };
 
+  const handleStatusChange = async (_id: string) => {
+    try {
+      setLoading(true);
+      console.log(_id);
+      const res = await updateBlogStatus(_id);
+      if (res?.success) {
+        toast.success(res?.message);
+      }
+    } catch (err: any) {
+      toast.error(err?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       {/* Blog Page Heading  */}
@@ -61,6 +78,7 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
               <th className="px-4 py-2 text-left border w-32  border-[#e9ebec] dark:border-[#142e3a]">Image</th>
               <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Title</th>
               <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Category</th>
+              <th className="px-4 py-2 text-left border  border-[#e9ebec] dark:border-[#142e3a]">Featured</th>
               <th className="px-4 py-2 text-left border border-[#e9ebec] dark:border-[#142e3a]">Action</th>
             </tr>
           </thead>
@@ -78,6 +96,18 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
                 </td>
                 <td className="px-4 py-2 border border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.title}</td>
                 <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.category}</td>
+                <td className="px-4 py-2 border  dark:border-[#1e232e] border-slate-200 text-sm">
+                  <span
+                    className={`px-2 py-1 rounded-md text-sm
+                          ${
+                            item?.isFeatured === true
+                              ? "bg-[#c7ffdf] dark:bg-[#76d29e] text-[#205615] border-2 border-[#64c950] dark:text-[#225019]"
+                              : "bg-[#eef2f8] dark:bg-[#101624] text-light-primary-txt dark:text-dark-secondary-txt border-2 border-[#d1d2d5] dark:border-[#293553]"
+                          }`}
+                  >
+                    {item?.isFeatured === true ? "Featured" : "Regular"}
+                  </span>
+                </td>
                 <td className="px-4 py-2 border w-20  dark:border-[#232935] border-slate-300">
                   <DropdownMenu>
                     <DropdownMenuTrigger className="outline-none hover:scale-105 active:scale-95 duration-700">
@@ -96,6 +126,12 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
                         className="hover:text-red-500 border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full cursor-pointer"
                       >
                         Delete
+                      </span>
+                      <span
+                        onClick={() => handleStatusChange(item?._id)}
+                        className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full cursor-pointer flex items-center justify-center"
+                      >
+                        {loading ? <BiLoaderCircle className="animate-spin" /> : item?.isFeatured ? "Mark as Regular" : "Mark as Featured"}
                       </span>
                     </DropdownMenuContent>
                   </DropdownMenu>

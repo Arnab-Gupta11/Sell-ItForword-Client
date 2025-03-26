@@ -61,7 +61,7 @@ export const getBlogDetails = async (id: string) => {
 };
 
 //Update Blog
-export const UpdateBlog = async (id: string, blogData: Partial<TBlog>): Promise<any> => {
+export const updateBlog = async (id: string, blogData: Partial<TBlog>): Promise<any> => {
   const token = await getValidToken();
 
   try {
@@ -96,6 +96,27 @@ export const deleteBlog = async (blogId: string): Promise<any> => {
     });
     revalidateTag("BLOG");
     return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+
+//Update Blog
+export const updateBlogStatus = async (id: string): Promise<any> => {
+  const token = await getValidToken();
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/status/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    revalidateTag("BLOG");
+    const result = res.json();
+
+    return result;
   } catch (error: any) {
     return Error(error);
   }

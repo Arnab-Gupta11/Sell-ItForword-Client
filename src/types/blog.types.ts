@@ -4,6 +4,7 @@ export type TBlog = {
   content: string;
   image: string;
   category: string;
+  isFeatured: boolean;
   createdAt: Date;
   updatedAt: Date;
 };

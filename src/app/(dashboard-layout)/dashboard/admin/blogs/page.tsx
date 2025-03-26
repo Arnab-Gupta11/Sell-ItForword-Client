@@ -1,5 +1,6 @@
 import ManageBlogs from "@/components/modules/dashboard/admin/ManageBlogs/ManageBlogs";
 import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
+
 import { getAllBlogs } from "@/services/blog";
 import Link from "next/link";
 import { Suspense } from "react";

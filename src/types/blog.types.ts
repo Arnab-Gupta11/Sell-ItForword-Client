@@ -5,8 +5,8 @@ export type TBlog = {
   image: string;
   category: string;
   isFeatured: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 export type TBlogFormData = {
   title: string;

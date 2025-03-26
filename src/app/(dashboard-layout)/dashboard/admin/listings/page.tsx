@@ -1,15 +1,16 @@
 import ReviewListing from "@/components/modules/dashboard/admin/ReviewListing/ReviewListing";
+import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
 import { getAllListings } from "@/services/listing";
 import Link from "next/link";
 import { Suspense } from "react";
 import { FaBoxOpen } from "react-icons/fa";
-import TableSkeltonLoaer from "@/components/shared/Loader/TableSkeletonLoader";
+
 const ManageListingByAdminPage = async ({ searchParams }: { searchParams: Promise<{ page: string }> }) => {
   const { page } = await searchParams;
   const result = await getAllListings(page, undefined, undefined);
   const { data, meta } = result;
   return (
-    <Suspense fallback={<TableSkeltonLoaer />}>
+    <Suspense fallback={<TableSkeletonLoader />}>
       <div>
         {data && data.length > 0 ? (
           <ReviewListing listings={data} meta={meta} />

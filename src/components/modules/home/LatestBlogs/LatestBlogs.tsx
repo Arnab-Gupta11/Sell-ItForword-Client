@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
-import BlogCard from "../../blog/BlogCard";
+import { getFeaturedBlogs } from "@/services/blog";
+import LatestBlogLoader from "@/components/shared/Loader/BlogLoader/LatestBlogLoader";
+import { Suspense } from "react";
+import LatestBlogsSlider from "./LatestBlogsSlider";
 
-const LatestBlogs = () => {
+const LatestBlogs = async () => {
+  const result = await getFeaturedBlogs();
+  console.log(result);
   return (
     <div className="pt-14 pb-20">
       {/* Heading */}
@@ -18,9 +23,9 @@ const LatestBlogs = () => {
       </div>
 
       {/* Blog Slider */}
-      <div className="grid grid-cols-3 gap-5">
-        <BlogCard />
-      </div>
+      <Suspense fallback={<LatestBlogLoader />}>
+        <LatestBlogsSlider blogs={result?.data} />
+      </Suspense>
     </div>
   );
 };

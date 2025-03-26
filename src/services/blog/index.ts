@@ -121,3 +121,16 @@ export const updateBlogStatus = async (id: string): Promise<any> => {
     return Error(error);
   }
 };
+export const getFeaturedBlogs = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/featured`, {
+      next: {
+        tags: ["BLOG"],
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};

@@ -1,6 +1,6 @@
 "use server";
 import { getValidToken } from "@/lib/verifyToken";
-import { TBlogFormData } from "@/types/blog.types";
+import { TBlog, TBlogFormData } from "@/types/blog.types";
 import { revalidateTag } from "next/cache";
 
 export const getAllBlogs = async (query?: { [key: string]: string | string[] | undefined }) => {
@@ -57,5 +57,28 @@ export const getBlogDetails = async (id: string) => {
     return data;
   } catch (error: any) {
     return Error(error.message);
+  }
+};
+
+//Update Blog
+export const UpdateBlog = async (id: string, blogData: Partial<TBlog>): Promise<any> => {
+  const token = await getValidToken();
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(blogData),
+    });
+
+    revalidateTag("BLOG");
+    const result = res.json();
+
+    return result;
+  } catch (error: any) {
+    return Error(error);
   }
 };

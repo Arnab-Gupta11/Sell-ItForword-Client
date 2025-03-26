@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import imageUpload from "@/lib/imageUpload";
 import { TBlog } from "@/types/blog.types";
+import { UpdateBlog } from "@/services/blog";
 const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -37,15 +38,14 @@ const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
         category: data.category || blogs.category,
         content: data.content || blogs.content,
       };
-      console.log(blogInfo);
-      // const res = await addNewBlog(blogInfo);
-      // if (res?.success) {
-      //   toast.success(res?.message);
-      //   reset();
-      //   router.push("/dashboard/admin/blogs");
-      // } else {
-      //   toast.error(res?.message);
-      // }
+      const res = await UpdateBlog(blogs?._id, blogInfo);
+      if (res?.success) {
+        toast.success(res?.message);
+        reset();
+        router.push("/dashboard/admin/blogs");
+      } else {
+        toast.error(res?.message);
+      }
     } catch (err: any) {
       console.log(err);
     } finally {
@@ -57,7 +57,7 @@ const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
     <div className="z-0">
       <div className="pt-10 px-4 bs:px-0">
         <div className="flex items-center justify-between mb-5 pt-8 md:px-14">
-          <h2 className="text-base sm:text-lg bs:text-xl font-bold text-light-text-100 dark:text-dark-text-100 ">Add New Blog</h2>
+          <h2 className="text-base sm:text-lg bs:text-xl font-bold text-light-text-100 dark:text-dark-text-100 ">Update Blog</h2>
           <Button variant="primary" onClick={() => router.push("/dashboard/admin/blogs")}>
             <IoMdArrowRoundBack />
           </Button>
@@ -99,9 +99,8 @@ const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
                 </label>
 
                 {/* Hidden File Input */}
-                <input className="hidden" id="file_input" type="file" accept="image/*" {...register("image", { required: true })} />
+                <input className="hidden" id="file_input" type="file" accept="image/*" {...register("image")} />
               </div>
-              {errors.image && <span className="text-red-600 text-xs font-medium mt-0 ml-1">Blog Image is required</span>}
             </div>
             <div className="w-full md:w-1/2">
               <Label>Category</Label>
@@ -135,7 +134,7 @@ const UpdateBlogForm = ({ blogs }: { blogs: TBlog }) => {
           {/* button */}
           <div className=" mt-8 ">
             <Button variant="primary" type="submit" disabled={loading} className="sm-mx:w-full w-32">
-              {loading ? <BiLoaderCircle className="animate-spin" /> : "Add Blog"}
+              {loading ? <BiLoaderCircle className="animate-spin" /> : "Update Blog"}
             </Button>
           </div>
         </form>

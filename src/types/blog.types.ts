@@ -7,3 +7,9 @@ export type TBlog = {
   createdAt: Date;
   updatedAt: Date;
 };
+export type TBlogFormData = {
+  title: string;
+  content: string;
+  image: string;
+  category: string;
+};

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import imageUpload from "@/lib/imageUpload";
+import { addNewBlog } from "@/services/blog";
 const AddBlogForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -33,15 +34,16 @@ const AddBlogForm = () => {
         category: data.category,
         content: data.content,
       };
-      console.log(blogInfo);
-      // const res = await addNewBlog(blogInfo).unwrap();
-      // if (res?.success === true) {
-      //   toast.success(res?.message);
-      //   reset();
-      //   router.push("/dashboard/blogs");
-      // }
+      const res = await addNewBlog(blogInfo);
+      if (res?.success) {
+        toast.success(res?.message);
+        reset();
+        router.push("/dashboard/admin/blogs");
+      } else {
+        toast.error(res?.message);
+      }
     } catch (err: any) {
-      toast.error(err?.data?.message);
+      console.log(err);
     } finally {
       setLoading(false);
     }

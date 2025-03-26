@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { BsThreeDots } from "react-icons/bs";
 import React, { useState } from "react";

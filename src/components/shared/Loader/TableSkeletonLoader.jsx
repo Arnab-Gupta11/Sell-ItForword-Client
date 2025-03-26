@@ -24,7 +24,7 @@ const TableSkeletonLoader = () => {
           </tr>
         </thead>
         <tbody>
-          {[...Array(5)].map((_, index) => (
+          {[...Array(9)].map((_, index) => (
             <tr key={index} className="hover:bg-light-primary-bg dark:hover:bg-dark-primary-bg">
               <td className="px-4 py-2 border w-32 border-[#e9ebec] dark:border-[#142e3a]">
                 <Skeleton className="w-16 h-16" />

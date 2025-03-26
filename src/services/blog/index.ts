@@ -45,3 +45,17 @@ export const addNewBlog = async (blogData: TBlogFormData) => {
   const result = await res.json();
   return result;
 };
+
+export const getBlogDetails = async (id: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/${id}`, {
+      next: {
+        tags: ["BLOG"],
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};

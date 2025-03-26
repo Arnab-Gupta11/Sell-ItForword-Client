@@ -88,7 +88,7 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
                       className="bg-[#f7fbfe] dark:bg-[#101624] border-none shadow-md shadow-secondary-bg-light outline-none p-2 flex flex-col gap-2"
                     >
                       <span className="hover:text-primary border-2 border-[#e9ebec] dark:border-[#142e3a] py-2 px-5 rounded-lg hover:bg-light-primary-bg dark:hover:bg-dark-secondary-bg font-medium text-sm w-full">
-                        <Link href={`/dashboard/user/listings/${item?._id}`}>Update</Link>
+                        <Link href={`/dashboard/admin/blogs/${item?._id}`}>Update</Link>
                       </span>
 
                       <span

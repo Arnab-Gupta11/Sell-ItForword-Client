@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { TRefUser } from "@/types/user.types";
 import UpdateUserStatus from "./UpdateUserStatus";

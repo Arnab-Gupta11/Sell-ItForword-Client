@@ -62,6 +62,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       show: user?.role === "admin",
       Icon: FaClipboardList, // 📋 Clipboard Icon (for listing management)
     },
+    {
+      label: "Manage Blogs",
+      path: "/dashboard/admin/blogs",
+      show: user?.role === "admin",
+      Icon: FaClipboardList, // 📋 Clipboard Icon (for listing management)
+    },
   ];
 
   const handleLogOut = () => {

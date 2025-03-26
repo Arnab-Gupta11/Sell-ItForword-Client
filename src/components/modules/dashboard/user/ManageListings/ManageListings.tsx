@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { BsThreeDots } from "react-icons/bs";
-
 import React, { useState } from "react";
-import { Plus, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Swal from "sweetalert2";
 import Link from "next/link";
 import Image from "next/image";
 

@@ -4,47 +4,31 @@ import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
 import { FaCalendar } from "react-icons/fa";
 import fallback from "@/assets/fallback/fallback.png";
+import { Button } from "@/components/ui/button";
 // { blog }: { blog: Blog }
 const BlogCard = () => {
   return (
-    <div className="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="w-full overflow-hidden ">
       <figure>
-        <Image src={fallback} width={600} height={100} alt="blog image" className="rounded-t-lg h-64 object-cover" />
+        <Image src={fallback} width={600} height={100} alt="blog image" className="rounded-lg h-64 object-cover" />
       </figure>
-      <div className="p-6">
-        <p className="flex items-center justify-center text-teal-600 bg-teal-100 w-32 rounded-full py-1 text-sm">
+      <div className="py-4">
+        <div className="flex items-center justify-center text-black w-32 bg-[#a0c6eb] rounded-md py-1 text-sm">
           <FaCalendar className="mr-2" />
-          {"fdshsf"}
-        </p>
-        <h2 className="text-xl font-bold mt-4">
+          <span>{"fdshsf"}</span>
+        </div>
+        <h2 className="text-lg text-light-primary-txt dark:text-dark-primary-txt font-medium mt-3">
           {/* {blog.title.length > 30 ? blog.title.slice(0, 30) + "..." : blog.title} */}
           hello
         </h2>
-        <p className="text-gray-400 mt-2">
+        <p className="text-light-secondary-txt dark:text-dark-secondary-txt mt-2">
           {/* {blog.description.length > 100 ? blog.description.slice(0, 60) + "..." : blog.description}
           <Link href={`/blogs/${blog.id}`} className="text-teal-600 ml-1">
             Read More
           </Link> */}
           Hi
         </p>
-        <div className="flex justify-between items-center mt-5">
-          <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
-              <Image
-                src="https://cdn-icons-png.flaticon.com/512/219/219986.png"
-                width={100}
-                height={100}
-                alt="author image"
-                className="object-cover"
-              />
-            </div>
-            <span className="text-sm font-medium text-gray-500">Rahim</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-700">
-            <AiFillLike className="text-teal-600 text-xl mr-1" />
-            {10} Likes
-          </div>
-        </div>
+        <Button className="mt-3">Reade More</Button>
       </div>
     </div>
   );

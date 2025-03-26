@@ -46,6 +46,11 @@ const Navbar = () => {
       show: user?.role === "user" || user?.role === "admin",
     },
     {
+      label: "blogs",
+      path: "/blogs",
+      show: true,
+    },
+    {
       label: "Contact",
       path: "/contact",
       show: true,

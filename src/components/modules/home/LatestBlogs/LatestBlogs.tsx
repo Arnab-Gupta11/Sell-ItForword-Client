@@ -8,7 +8,6 @@ import LatestBlogsSlider from "./LatestBlogsSlider";
 
 const LatestBlogs = async () => {
   const result = await getFeaturedBlogs();
-  console.log(result);
   return (
     <div className="pt-14 pb-20">
       {/* Heading */}

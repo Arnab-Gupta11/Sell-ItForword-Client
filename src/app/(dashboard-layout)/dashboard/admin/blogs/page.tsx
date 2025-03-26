@@ -10,8 +10,6 @@ const ManageBlogsPage = async ({ searchParams }: { searchParams: Promise<Record<
   const params = await searchParams;
   const result = await getAllBlogs(params);
   const { data, meta } = result;
-  console.log(data);
-  console.log(meta);
   return (
     <Suspense fallback={<TableSkeletonLoader />}>
       <div>

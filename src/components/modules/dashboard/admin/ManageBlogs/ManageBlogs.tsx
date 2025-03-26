@@ -45,7 +45,6 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
   const handleStatusChange = async (_id: string) => {
     try {
       setLoading(true);
-      console.log(_id);
       const res = await updateBlogStatus(_id);
       if (res?.success) {
         toast.success(res?.message);

@@ -10,7 +10,6 @@ import React, { Suspense } from "react";
 
 const BlogPage = async () => {
   const result = await getAllBlogs();
-  console.log(result);
   return (
     <div>
       <PageHeader title="All Blogs">

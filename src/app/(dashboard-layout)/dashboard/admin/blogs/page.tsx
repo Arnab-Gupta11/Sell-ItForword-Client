@@ -1,8 +1,6 @@
 import ManageBlogs from "@/components/modules/dashboard/admin/ManageBlogs/ManageBlogs";
-import ReviewListing from "@/components/modules/dashboard/admin/ReviewListing/ReviewListing";
 import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
 import { getAllBlogs } from "@/services/blog";
-import { getAllListings } from "@/services/listing";
 import Link from "next/link";
 import { Suspense } from "react";
 import { FaBoxOpen } from "react-icons/fa";

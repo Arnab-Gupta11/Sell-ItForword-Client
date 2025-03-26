@@ -8,7 +8,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { formatPrice } from "@/lib/formatePrice";
 import toast from "react-hot-toast";
 import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmationModal";
 import { TMeta } from "@/types/global.types";
@@ -47,7 +46,7 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
       {/* Blog Page Heading  */}
       <div className="mb-5 flex flex-col xs:flex-row items-center xs:justify-between gap-5">
         <h1 className="text-2xl font-semibold text-light-primary-txt dark:text-dark-primary-txt">Manage Blogs</h1>
-        <Link href="/dashboard/user/listings/add-listing">
+        <Link href="/dashboard/admin/blogs/add-blog">
           <Button variant="primary">
             <Plus />
             <span>Add Blog</span>

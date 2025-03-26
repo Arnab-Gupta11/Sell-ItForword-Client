@@ -11,8 +11,8 @@ import toast from "react-hot-toast";
 import DeleteConfirmationModal from "@/components/ui/core/Modal/DeleteConfirmationModal";
 import { TMeta } from "@/types/global.types";
 import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
-import { deleteListing } from "@/services/listing";
 import { TBlog } from "@/types/blog.types";
+import { deleteBlog } from "@/services/blog";
 const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -27,7 +27,7 @@ const ManageBlogs = ({ blogs, meta }: { blogs: TBlog[]; meta: TMeta }) => {
   const handleDeleteConfirm = async () => {
     try {
       if (selectedId) {
-        const res = await deleteListing(selectedId);
+        const res = await deleteBlog(selectedId);
         if (res?.success) {
           toast.success(res?.message);
           setModalOpen(false);

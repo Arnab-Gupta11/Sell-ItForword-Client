@@ -82,3 +82,21 @@ export const UpdateBlog = async (id: string, blogData: Partial<TBlog>): Promise<
     return Error(error);
   }
 };
+
+//Delete Blog
+export const deleteBlog = async (blogId: string): Promise<any> => {
+  const token = await getValidToken();
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/${blogId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
+    revalidateTag("BLOG");
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};

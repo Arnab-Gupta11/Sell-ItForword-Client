@@ -40,11 +40,11 @@ const Navbar = () => {
       path: "/listings",
       show: true,
     },
-    {
-      label: "Dashboard",
-      path: `${user?.role === "admin" ? "/dashboard/admin/user-management" : "/dashboard/user/listings"}`,
-      show: user?.role === "user" || user?.role === "admin",
-    },
+    // {
+    //   label: "Dashboard",
+    //   path: `${user?.role === "admin" ? "/dashboard/admin/user-management" : "/dashboard/user/listings"}`,
+    //   show: user?.role === "user" || user?.role === "admin",
+    // },
     {
       label: "Blogs",
       path: "/blogs",
@@ -108,14 +108,8 @@ const Navbar = () => {
 
           <div className="flex items-center">
             <ThemeToggler />
+            <ProfileAvatar />
             <NavSidebar menuItems={menuItems} />
-            {user ? (
-              <ProfileAvatar />
-            ) : (
-              <Button variant="primary" className="ml-6">
-                <Link href={"/login"}>Login</Link>
-              </Button>
-            )}
           </div>
         </div>
       </div>

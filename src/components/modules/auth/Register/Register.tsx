@@ -48,7 +48,9 @@ const Register = () => {
         <CardHeader>
           <CardTitle className="mx-auto">
             {/* <Logo width={200} /> */}
-            <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
+            <Link href={"/"} className="cursor-pointer">
+              <Image src={logo} alt={"Logo"} width={150} className={"h-auto"} />
+            </Link>
           </CardTitle>
           <CardDescription className="text-center text-sm font-medium text-light-secondary-txt dark:text-dark-secondary-txt">
             Create your account to explore jobs and grow your career.

@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { getAllCategories } from "@/services/category";
+import { ICategory } from "@/types/category.types";
+import Image from "next/image";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
 
@@ -29,16 +32,19 @@ const listingCategoriesWithIcons = [
   { category: "Toys & Games", Icon: FaPuzzlePiece },
   { category: "Sports & Outdoors", Icon: FaBicycle },
   { category: "Vehicles", Icon: FaCar },
-  { category: "Real Estate", Icon: FaBuilding },
+  { category: "Pets & Pet Supplies", Icon: FaPaw },
   { category: "Musical Instruments", Icon: FaGuitar },
+
   { category: "Collectibles", Icon: FaGift },
+  { category: "Real Estate", Icon: FaBuilding },
   { category: "Tools & Equipment", Icon: FaWrench },
   { category: "Health & Beauty", Icon: FaHeart },
-  { category: "Pets & Pet Supplies", Icon: FaPaw },
+
   { category: "Bikes & Scooters", Icon: FaMotorcycle },
 ];
 
-const Category = () => {
+const Category = async () => {
+  const result = await getAllCategories();
   return (
     <div className="pt-14 pb-20">
       <div className="flex items-center justify-between flex-wrap gap-5">
@@ -51,11 +57,11 @@ const Category = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 bs:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5 mt-12">
-        {listingCategoriesWithIcons.map(({ Icon, category }) => (
-          <Link href={`/listings/categories/${category}`} key={category}>
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
-              <Icon className="text-xl text-primary" />
-              <h1 className="text-base font-medium text-light-primary-txt dark:text-dark-primary-txt">{category}</h1>
+        {result?.data?.map((item: ICategory) => (
+          <Link href={`/listings/categories/${item?._id}`} key={item?._id}>
+            <div className="flex flex-col items-center justify-center gap-2 p-5 rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
+              <Image src={item?.icon} alt={item?.name} width={80} height={80} className="w-16 h-16" />
+              <h1 className="text-base font-medium text-light-primary-txt dark:text-dark-primary-txt">{item?.name}</h1>
             </div>
           </Link>
         ))}

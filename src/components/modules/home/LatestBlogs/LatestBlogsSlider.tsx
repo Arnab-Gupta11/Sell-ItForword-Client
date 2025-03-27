@@ -37,7 +37,7 @@ const LatestBlogsSlider = ({ blogs }: { blogs: TBlog[] }) => {
         modules={[Autoplay, FreeMode, Pagination]}
         className=""
       >
-        {blogs.map((item) => (
+        {blogs?.map((item) => (
           <SwiperSlide key={item?._id} className="pb-10">
             <BlogCard blog={item} />
           </SwiperSlide>

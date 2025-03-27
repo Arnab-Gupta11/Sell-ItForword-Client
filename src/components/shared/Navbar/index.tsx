@@ -12,6 +12,7 @@ import useUser from "@/hooks/useUser";
 import ProfileAvatar from "./ProfileAvatar";
 import logo from "@/assets/logo/Logo1.png";
 import Image from "next/image";
+import MegaMenu from "./MegaMenu";
 export type TUserProps = {
   user?: {
     name?: string | null | undefined;
@@ -102,17 +103,21 @@ const Navbar = () => {
           <div className="hidden lg:flex gap-6 items-center font-medium ">
             {menuItems.map((menuItem, idx) =>
               menuItem.show ? (
-                <Link
-                  key={idx}
-                  href={menuItem.path}
-                  className={`font-medium ${
-                    pathname === menuItem.path
-                      ? "text-primary text-lg"
-                      : "text-light-primary-txt dark:text-dark-primary-txt hover:text-primary duration-500 ease-in-out text-base"
-                  }`}
-                >
-                  <NavItem label={menuItem.label} active={true} />
-                </Link>
+                menuItem.isMegaMenu ? (
+                  <MegaMenu key={idx} label={menuItem.label} path={menuItem.path} />
+                ) : (
+                  <Link
+                    key={idx}
+                    href={menuItem.path}
+                    className={`${
+                      pathname === menuItem.path
+                        ? "text-primary font-medium"
+                        : "text-light-primary-txt dark:text-dark-primary-txt hover:text-primary duration-500 ease-in-out"
+                    }`}
+                  >
+                    <NavItem label={menuItem.label} active={true} />
+                  </Link>
+                )
               ) : null
             )}
           </div>

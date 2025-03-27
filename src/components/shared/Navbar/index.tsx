@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 import NavSidebar from "./NavSidebar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import useUser from "@/hooks/useUser";
-import { Button } from "@/components/ui/button";
 import ProfileAvatar from "./ProfileAvatar";
 import logo from "@/assets/logo/Logo1.png";
 import Image from "next/image";
@@ -35,10 +34,17 @@ const Navbar = () => {
       path: "/",
       show: true,
     },
+
     {
       label: "All Listings",
       path: "/listings",
       show: true,
+    },
+    {
+      label: "Categories",
+      path: "/categories",
+      show: true,
+      isMegaMenu: true,
     },
     // {
     //   label: "Dashboard",
@@ -58,6 +64,11 @@ const Navbar = () => {
     {
       label: "Contact",
       path: "/contact",
+      show: true,
+    },
+    {
+      label: "FAQ",
+      path: "/faq",
       show: true,
     },
   ];
@@ -109,7 +120,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <ThemeToggler />
             <ProfileAvatar />
-            <NavSidebar menuItems={menuItems} />
+            <NavSidebar />
           </div>
         </div>
       </div>

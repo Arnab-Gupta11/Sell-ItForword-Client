@@ -1,3 +1,4 @@
+import TestNav from "@/components/shared/Navbar/TestNav";
 import SearchDropdown from "./SearchDropdown";
 
 const Banner = () => {
@@ -11,6 +12,7 @@ const Banner = () => {
           Sustainable shopping made simple—buy & sell with ease.
         </h5>
         <SearchDropdown />
+        <TestNav />
       </div>
     </div>
   );

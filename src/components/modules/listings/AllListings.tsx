@@ -3,13 +3,16 @@ import FilterSidebar from "./FilterSidebar";
 import ListingCard from "./ListingCard";
 import SearchListings from "./SearchListings";
 import FilterResponsiveSidebar from "./FilterResponsiveSidebar";
+import { TMeta } from "@/types/global.types";
+import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
+import { ICategory } from "@/types/category.types";
 
-const AllListings = ({ listings }: { listings: TListingDetails[] }) => {
+const AllListings = ({ listings, meta, categories }: { listings: TListingDetails[]; meta: TMeta; categories: ICategory[] }) => {
   return (
     <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8 xl:px-0">
       <div className="grid grid-cols-1 bs:grid-cols-12 gap-5 pt-20 pb-24">
         <div className="bs:col-span-4 xl:col-span-3  hidden bs:block">
-          <FilterSidebar />
+          <FilterSidebar categories={categories} />
         </div>
         <div className="bs:col-span-8 xl:col-span-9">
           {/* search option  */}
@@ -37,9 +40,8 @@ const AllListings = ({ listings }: { listings: TListingDetails[] }) => {
               </div>
             )}
           </div>
-          {/* </> */}
-          {/* )} */}
-          {/* <PaginationProduct meta={productData?.meta as TMeta} page={page} setPage={setPage} /> */}
+
+          <CustomPagination meta={meta} />
         </div>
       </div>
     </div>

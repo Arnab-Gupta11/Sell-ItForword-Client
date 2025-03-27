@@ -84,7 +84,7 @@ export const UpdateListing = async (id: string, listingData: Partial<TListingDet
 //   }
 // };
 
-export const getAllListings = async (page?: string, limit?: string, query?: { [key: string]: string | string[] | undefined }) => {
+export const getAllListings = async (query?: { [key: string]: string | string[] | undefined }) => {
   const params = new URLSearchParams();
 
   if (query?.minPrice) {
@@ -92,6 +92,9 @@ export const getAllListings = async (page?: string, limit?: string, query?: { [k
   }
   if (query?.maxPrice) {
     params.append("maxPrice", query.maxPrice.toString());
+  }
+  if (query?.page) {
+    params.append("page", query?.page.toString());
   }
 
   if (query?.category) {
@@ -113,7 +116,7 @@ export const getAllListings = async (page?: string, limit?: string, query?: { [k
   }
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?limit=${limit}&page=${page}&${params.toString()}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings?${params.toString()}`, {
       next: {
         tags: ["LISTING"],
       },
@@ -126,16 +129,14 @@ export const getAllListings = async (page?: string, limit?: string, query?: { [k
   }
 };
 
-export const getAllListingsByCategory = async (
-  category: string,
-  page?: string,
-  limit?: string,
-  query?: { [key: string]: string | string[] | undefined }
-) => {
+export const getAllListingsByCategory = async (category: string, query?: { [key: string]: string | string[] | undefined }) => {
   const params = new URLSearchParams();
 
   if (query?.minPrice) {
     params.append("minPrice", query?.minPrice.toString());
+  }
+  if (query?.page) {
+    params.append("page", query?.page.toString());
   }
   if (query?.maxPrice) {
     params.append("maxPrice", query?.maxPrice.toString());
@@ -151,7 +152,7 @@ export const getAllListingsByCategory = async (
   }
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/categories/${category}/?limit=${limit}&page=${page}&${params}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/categories/${category}?${params}`, {
       next: {
         tags: ["LISTING"],
       },

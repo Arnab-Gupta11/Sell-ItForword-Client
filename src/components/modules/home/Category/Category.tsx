@@ -31,7 +31,7 @@ const Category = async () => {
     <div className="pt-14 pb-20">
       <div className="flex items-center justify-between flex-wrap gap-5">
         <h1 className="text-2xl sm:text-3xl font-semibold ">Browse By Category</h1>
-        <Link href={"/listings"}>
+        <Link href={"/categories"}>
           <Button variant="primary" className="flex items-center gap-2 text-white">
             <span className="font-medium">View All</span>
             <FaAngleRight />

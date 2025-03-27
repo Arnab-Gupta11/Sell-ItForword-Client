@@ -3,24 +3,25 @@ import { useEffect, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ICategory } from "@/types/category.types";
 
-const categories = [
-  "Electronics",
-  "Furniture",
-  "Clothing & Accessories",
-  "Books",
-  "Home Appliances",
-  "Toys & Games",
-  "Sports & Outdoors",
-  "Vehicles",
-  "Real Estate",
-  "Musical Instruments",
-  "Collectibles",
-  "Tools & Equipment",
-  "Health & Beauty",
-  "Pets & Pet Supplies",
-  "Bikes & Scooters",
-];
+// const categories = [
+//   "Electronics",
+//   "Furniture",
+//   "Clothing & Accessories",
+//   "Books",
+//   "Home Appliances",
+//   "Toys & Games",
+//   "Sports & Outdoors",
+//   "Vehicles",
+//   "Real Estate",
+//   "Musical Instruments",
+//   "Collectibles",
+//   "Tools & Equipment",
+//   "Health & Beauty",
+//   "Pets & Pet Supplies",
+//   "Bikes & Scooters",
+// ];
 
 const locations = [
   "Dhaka",
@@ -47,7 +48,7 @@ const locations = [
 
 const conditions = ["used", "new"];
 
-export default function FilterSidebar() {
+export default function FilterSidebar({ categories }: { categories: ICategory[] }) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100000);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -159,18 +160,18 @@ export default function FilterSidebar() {
       <div className="mb-6">
         <h2 className="text-lg font-semibold mb-4">Filter By Category</h2>
         <div className="space-y-2">
-          {categories.map((category) => (
-            <div key={category} className="flex items-center space-x-2">
+          {categories.map((item) => (
+            <div key={item?._id} className="flex items-center space-x-2">
               <input
                 type="checkbox"
-                id={category}
-                value={category}
-                checked={selectedCategories.includes(category)}
-                onChange={() => handleCategoryChange(category)}
+                id={item._id}
+                value={item?._id}
+                checked={selectedCategories.includes(item._id)}
+                onChange={() => handleCategoryChange(item._id)}
                 className="cursor-pointer"
               />
-              <label htmlFor={category} className="text-light-secondary-txt dark:text-dark-secondary-txt font-medium cursor-pointer">
-                {category}
+              <label htmlFor={item._id} className="text-light-secondary-txt dark:text-dark-secondary-txt font-medium cursor-pointer">
+                {item?.name}
               </label>
             </div>
           ))}

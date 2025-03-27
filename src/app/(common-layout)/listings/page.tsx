@@ -1,6 +1,7 @@
 import AllListings from "@/components/modules/listings/AllListings";
 import PageHeader from "@/components/shared/PageHeader/PageHeader";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { getAllCategories } from "@/services/category";
 import { getAllListings } from "@/services/listing";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }) => {
   const query = await searchParams;
 
-  const { data: listings } = await getAllListings(undefined, undefined, query);
+  const { data: listings, meta } = await getAllListings(query);
+  const result = await getAllCategories();
   return (
     <div>
       <PageHeader title="All Listings">
@@ -30,7 +32,7 @@ const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }
           </BreadcrumbList>
         </Breadcrumb>
       </PageHeader>
-      <AllListings listings={listings} />
+      <AllListings listings={listings} meta={meta} categories={result?.data} />
     </div>
   );
 };

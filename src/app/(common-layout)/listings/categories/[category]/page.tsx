@@ -10,7 +10,7 @@ const CategoryListingsPage = async ({ params, searchParams }: { params: Promise<
   const { category } = await params;
   const query = await searchParams;
 
-  const { data: listings } = await getAllListingsByCategory(category, undefined, undefined, query);
+  const { data: listings } = await getAllListingsByCategory(category, query);
   return (
     <div>
       <PageHeader title={decodeURIComponent(category)}>

@@ -14,8 +14,9 @@ import { ImSpinner10 } from "react-icons/im";
 import { createListing } from "@/services/listing";
 import { useRouter } from "next/navigation";
 import { categoryOptions, cityOptions, conditionOptions } from "@/constants/listing.constant";
+import { ICategory } from "@/types/category.types";
 
-const AddListingForm = () => {
+const AddListingForm = ({ categories }: { categories: ICategory[] }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -31,20 +32,21 @@ const AddListingForm = () => {
     try {
       setLoading(true);
       const image = data.image[0];
-      const imageData = await imageUpload(image);
+      // const imageData = await imageUpload(image);
       const listingInfo = {
         ...data,
         price: Number(data.price),
-        image: imageData,
+        // image: imageData,
       };
-      const res = await createListing(listingInfo);
-      if (res?.success) {
-        toast.success(res?.message);
-        reset();
-        router.push("/dashboard/user/listings");
-      } else {
-        toast.error(res?.message);
-      }
+      console.log(listingInfo);
+      // const res = await createListing(listingInfo);
+      // if (res?.success) {
+      //   toast.success(res?.message);
+      //   reset();
+      //   router.push("/dashboard/user/listings");
+      // } else {
+      //   toast.error(res?.message);
+      // }
     } catch (err: any) {
       console.log(err);
     } finally {
@@ -95,9 +97,9 @@ const AddListingForm = () => {
                 <option value="" className="text-slate-800">
                   Select Category
                 </option>
-                {categoryOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
+                {categories?.map((option) => (
+                  <option key={option._id} value={option?._id}>
+                    {option?.name}
                   </option>
                 ))}
               </select>

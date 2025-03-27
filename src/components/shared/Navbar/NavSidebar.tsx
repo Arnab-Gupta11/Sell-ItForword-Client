@@ -8,6 +8,7 @@ import Image from "next/image";
 import logo from "@/assets/logo/Logo1.png";
 
 import CollapseMenu from "./CollapseMenu";
+import { ICategory } from "@/types/category.types";
 
 const menuItems = [
   {
@@ -47,7 +48,7 @@ const menuItems = [
     show: true,
   },
 ];
-const NavSidebar = () => {
+const NavSidebar = ({ categories }: { categories: ICategory[] }) => {
   const pathname = usePathname();
   return (
     <div className="ml-5 lg:ml-0">
@@ -66,7 +67,7 @@ const NavSidebar = () => {
               {menuItems.map((menuItem, idx) =>
                 menuItem.show ? (
                   menuItem.isCollapsible ? (
-                    <CollapseMenu key={idx} label={menuItem.label} path={menuItem.path} />
+                    <CollapseMenu key={idx} label={menuItem.label} path={menuItem.path} categories={categories} />
                   ) : (
                     <Link
                       key={idx}

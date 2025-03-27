@@ -1,18 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import NavItem from "./NavItem";
-
-// import NavSidebar from "./NavSidebar";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import NavSidebar from "./NavSidebar";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
-import useUser from "@/hooks/useUser";
 import ProfileAvatar from "./ProfileAvatar";
 import logo from "@/assets/logo/Logo1.png";
 import Image from "next/image";
 import MegaMenu from "./MegaMenu";
+import { getAllCategories } from "@/services/category";
+import { ICategory } from "@/types/category.types";
 export type TUserProps = {
   user?: {
     name?: string | null | undefined;
@@ -28,7 +26,15 @@ export type TNavMenuItem = {
 const Navbar = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useUser();
+
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const result = await getAllCategories();
+      setCategories(result?.data || []);
+    };
+    fetchCategories();
+  }, []);
   const menuItems = [
     {
       label: "Home",
@@ -104,7 +110,7 @@ const Navbar = () => {
             {menuItems.map((menuItem, idx) =>
               menuItem.show ? (
                 menuItem.isMegaMenu ? (
-                  <MegaMenu key={idx} label={menuItem.label} path={menuItem.path} />
+                  <MegaMenu key={idx} label={menuItem.label} path={menuItem.path} categories={categories} />
                 ) : (
                   <Link
                     key={idx}
@@ -125,7 +131,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <ThemeToggler />
             <ProfileAvatar />
-            <NavSidebar />
+            <NavSidebar categories={categories} />
           </div>
         </div>
       </div>

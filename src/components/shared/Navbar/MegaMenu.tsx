@@ -2,25 +2,26 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { ICategory } from "@/types/category.types";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const categories = [
-  { name: "Electronics", path: "/categories/electronics" },
-  { name: "Fashion", path: "/categories/fashion" },
-  { name: "Home & Furniture", path: "/categories/home-furniture" },
-  { name: "Books", path: "/categories/books" },
-  { name: "Toys", path: "/categories/toys" },
-  { name: "Automobile", path: "/categories/automobile" },
-  { name: "Sports & Fitness", path: "/categories/sports-fitness" },
-  { name: "Beauty & Personal Care", path: "/categories/beauty-care" },
-  { name: "Beauty & Personal Care", path: "/categories/beauty-care" },
-  { name: "Beauty & Personal Care & Personal Care", path: "/categories/beauty-care" },
-];
-const MegaMenu = ({ label, path }: { label: string; path: string }) => {
+// const categories = [
+//   { name: "Electronics", path: "/categories/electronics" },
+//   { name: "Fashion", path: "/categories/fashion" },
+//   { name: "Home & Furniture", path: "/categories/home-furniture" },
+//   { name: "Books", path: "/categories/books" },
+//   { name: "Toys", path: "/categories/toys" },
+//   { name: "Automobile", path: "/categories/automobile" },
+//   { name: "Sports & Fitness", path: "/categories/sports-fitness" },
+//   { name: "Beauty & Personal Care", path: "/categories/beauty-care" },
+//   { name: "Beauty & Personal Care", path: "/categories/beauty-care" },
+//   { name: "Beauty & Personal Care & Personal Care", path: "/categories/beauty-care" },
+// ];
+const MegaMenu = ({ label, path, categories }: { label: string; path: string; categories: ICategory[] }) => {
   const pathname = usePathname();
   return (
     <div>
@@ -41,9 +42,12 @@ const MegaMenu = ({ label, path }: { label: string; path: string }) => {
             </NavigationMenuTrigger>
             <NavigationMenuContent className="grid grid-cols-3 gap-5 p-4 lg:min-w-[600px]  rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-md shadow-[#e9ebec] dark:shadow-[#142e3a]">
               {/* <NavigationMenuLink>Link</NavigationMenuLink> */}
-              {categories.map((category, idx) => (
-                <Link key={idx} href={category.path} className="text-gray-700 dark:text-gray-300 hover:text-primary">
-                  {category.name}
+              {categories?.map((item: ICategory) => (
+                <Link key={item?._id} href={`/listings/categories/${item?._id}`}>
+                  <div className="text-sm pb-2.5 text-light-primary-txt dark:text-dark-primary-txt flex items-center gap-3 hover:text-primary">
+                    <Image src={item?.icon} height={50} width={50} alt={item?.name} className="w-8 h-8" />
+                    <span>{item?.name}</span>
+                  </div>
                 </Link>
               ))}
             </NavigationMenuContent>

@@ -5,43 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
 
-import {
-  FaLaptop,
-  FaCouch,
-  FaTshirt,
-  FaBook,
-  FaBlender,
-  FaPuzzlePiece,
-  FaBicycle,
-  FaCar,
-  FaBuilding,
-  FaGuitar,
-  FaGift,
-  FaWrench,
-  FaHeart,
-  FaPaw,
-  FaMotorcycle,
-} from "react-icons/fa";
+// const listingCategoriesWithIcons = [
+//   { category: "Electronics", Icon: FaLaptop },
+//   { category: "Furniture", Icon: FaCouch },
+//   { category: "Clothing & Accessories", Icon: FaTshirt },
+//   { category: "Books", Icon: FaBook },
+//   { category: "Home Appliances", Icon: FaBlender },
+//   { category: "Toys & Games", Icon: FaPuzzlePiece },
+//   { category: "Sports & Outdoors", Icon: FaBicycle },
+//   { category: "Vehicles", Icon: FaCar },
+//   { category: "Pets & Pet Supplies", Icon: FaPaw },
+//   { category: "Musical Instruments", Icon: FaGuitar },
 
-const listingCategoriesWithIcons = [
-  { category: "Electronics", Icon: FaLaptop },
-  { category: "Furniture", Icon: FaCouch },
-  { category: "Clothing & Accessories", Icon: FaTshirt },
-  { category: "Books", Icon: FaBook },
-  { category: "Home Appliances", Icon: FaBlender },
-  { category: "Toys & Games", Icon: FaPuzzlePiece },
-  { category: "Sports & Outdoors", Icon: FaBicycle },
-  { category: "Vehicles", Icon: FaCar },
-  { category: "Pets & Pet Supplies", Icon: FaPaw },
-  { category: "Musical Instruments", Icon: FaGuitar },
+//   { category: "Collectibles", Icon: FaGift },
+//   { category: "Real Estate", Icon: FaBuilding },
+//   { category: "Tools & Equipment", Icon: FaWrench },
+//   { category: "Health & Beauty", Icon: FaHeart },
 
-  { category: "Collectibles", Icon: FaGift },
-  { category: "Real Estate", Icon: FaBuilding },
-  { category: "Tools & Equipment", Icon: FaWrench },
-  { category: "Health & Beauty", Icon: FaHeart },
-
-  { category: "Bikes & Scooters", Icon: FaMotorcycle },
-];
+//   { category: "Bikes & Scooters", Icon: FaMotorcycle },
+// ];
 
 const Category = async () => {
   const result = await getAllCategories();

@@ -41,9 +41,9 @@ const WishListButton = ({ isExist, listingId }: { isExist: boolean; listingId: s
         className="py-2 rounded-lg group bg-transparent hover:bg-transparent border-2 border-[#c9cbcc] dark:border-[#142e3a] shadow-sm shadow-[#c2c3c4] dark:shadow-[#142e3a] hover:scale-105 active:scale-95 transition-all"
       >
         {isExist ? (
-          <FaHeart size={234} className="text-red-500 font-bold text-2xl" />
+          <FaHeart className="text-red-500 font-bold text-lg lg:text-2xl" />
         ) : (
-          <FaRegHeart size={234} className="text-light-primary-txt dark:text-dark-primary-txt font-bold text-2xl group-hover:text-red-500" />
+          <FaRegHeart className="text-light-primary-txt dark:text-dark-primary-txt font-bold text-lg lg:text-2xl group-hover:text-red-500" />
         )}
       </Button>
     </div>

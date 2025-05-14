@@ -11,6 +11,7 @@ import { formatMongoDateToDate } from "@/lib/formateDate";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import PurchaseDetails from "./PurchaseDetails";
 const PurchaseHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta }) => {
+
   return (
     <div>
       <div className="mb-5">

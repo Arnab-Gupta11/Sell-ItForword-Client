@@ -4,10 +4,9 @@ import ListingCard from "./ListingCard";
 import SearchListings from "./SearchListings";
 import FilterResponsiveSidebar from "./FilterResponsiveSidebar";
 import { TMeta } from "@/types/global.types";
-import { CustomPagination } from "@/components/shared/CustomPagination/CustomPagination";
 import { ICategory } from "@/types/category.types";
 
-const AllListings = ({ listings, meta, categories }: { listings: TListingDetails[]; meta: TMeta; categories: ICategory[] }) => {
+const AllListings = ({ listings, categories }: { listings: TListingDetails[]; categories: ICategory[] }) => {
   return (
     <div className="max-w-screen-xl mx-auto px-3 xsm:px-5 bs:px-8 xl:px-0">
       <div className="grid grid-cols-1 bs:grid-cols-12 gap-5 pt-20 pb-24">
@@ -21,7 +20,7 @@ const AllListings = ({ listings, meta, categories }: { listings: TListingDetails
               <SearchListings />
             </div>
             <div className="flex items-center gap-4">
-              <FilterResponsiveSidebar />
+              <FilterResponsiveSidebar categories={categories} />
             </div>
           </div>
           {/* {isLoading || isFetching ? (
@@ -41,7 +40,7 @@ const AllListings = ({ listings, meta, categories }: { listings: TListingDetails
             )}
           </div>
 
-          <CustomPagination meta={meta} />
+          {/* <CustomPagination meta={meta} /> */}
         </div>
       </div>
     </div>

@@ -1,8 +1,9 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Filter } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
+import { ICategory } from "@/types/category.types";
 
-const FilterResponsiveSidebar = () => {
+const FilterResponsiveSidebar = ({ categories }: { categories: ICategory[] }) => {
   return (
     <Sheet>
       <SheetTrigger className="flex bs:hidden">
@@ -15,7 +16,7 @@ const FilterResponsiveSidebar = () => {
           <SheetTitle className="flex items-center justify-between pb-4 border-b-[1px] border-[#e9ebec] dark:border-[#142e3a] font-semibold text-light-primary-txt dark:text-dark-primary-txt text-lg ">
             Filter Listings
           </SheetTitle>
-          <FilterSidebar />
+          <FilterSidebar categories={categories} />
         </SheetHeader>
       </SheetContent>
     </Sheet>

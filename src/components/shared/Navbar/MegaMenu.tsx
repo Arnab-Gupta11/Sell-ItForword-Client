@@ -46,7 +46,7 @@ const MegaMenu = ({ label, path, categories }: { label: string; path: string; ca
                 <Link key={item?._id} href={`/listings/categories/${item?._id}`}>
                   <div className="text-sm pb-2.5 text-light-primary-txt dark:text-dark-primary-txt flex items-center gap-3 hover:text-primary">
                     <Image src={item?.icon} height={50} width={50} alt={item?.name} className="w-8 h-8" />
-                    <span>{item?.name}</span>
+                    <span className="hover:text-primary">{item?.name}</span>
                   </div>
                 </Link>
               ))}

@@ -39,10 +39,12 @@ const SalesDetails = ({ transactionDetails }: { transactionDetails: ITransaction
                 <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Condition:</span>
                 <span className="font-medium text-light-secondary-txt dark:text-dark-secondary-txt">{transactionDetails?.listingID?.condition}</span>
               </div>
-              <div className="flex justify-between mt-2 flex-wrap">
+              {/* <div className="flex justify-between mt-2 flex-wrap">
                 <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Category:</span>
-                <span className="font-medium text-light-secondary-txt dark:text-dark-secondary-txt">{transactionDetails?.listingID?.category}</span>
-              </div>
+                <span className="font-medium text-light-secondary-txt dark:text-dark-secondary-txt">
+                  {transactionDetails?.listingID?.category?.name}
+                </span>
+              </div> */}
               <div className="flex justify-between mt-2 flex-wrap">
                 <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Address:</span>
                 <span className="font-medium text-light-secondary-txt dark:text-dark-secondary-txt">{transactionDetails?.listingID?.address}</span>

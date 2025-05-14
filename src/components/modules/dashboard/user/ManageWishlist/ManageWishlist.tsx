@@ -67,7 +67,7 @@ const ManageWishlist = ({ result }: { result: TListingDetails[] }) => {
                     />
                   </td>
                   <td className="px-4 py-2 border border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.title}</td>
-                  <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.category}</td>
+                  <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.category?.name}</td>
                   <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{item?.condition}</td>
                   <td className="px-4 py-2 border  border-[#e9ebec] dark:border-[#142e3a] text-sm">{formatPrice(item?.price)}</td>
                   <td className="px-4 py-2 border w-20  dark:border-[#232935] border-slate-300">

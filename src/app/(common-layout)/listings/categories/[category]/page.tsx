@@ -5,15 +5,17 @@ import AllListingsByCategory from "@/components/modules/home/Category/AllListing
 import PageHeader from "@/components/shared/PageHeader/PageHeader";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { getCategoryDetails } from "@/services/category";
 
 const CategoryListingsPage = async ({ params, searchParams }: { params: Promise<{ category: string }>; searchParams: TSearchParams }) => {
   const { category } = await params;
   const query = await searchParams;
 
   const { data: listings } = await getAllListingsByCategory(category, query);
+  const res = await getCategoryDetails(category);
   return (
     <div>
-      <PageHeader title={decodeURIComponent(category)}>
+      <PageHeader title={res?.data?.name}>
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>

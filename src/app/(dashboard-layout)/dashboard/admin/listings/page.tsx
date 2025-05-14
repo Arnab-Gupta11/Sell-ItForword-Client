@@ -1,4 +1,5 @@
 import ReviewListing from "@/components/modules/dashboard/admin/ReviewListing/ReviewListing";
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
 import { getAllListings } from "@/services/listing";
 import Link from "next/link";
@@ -6,12 +7,12 @@ import { Suspense } from "react";
 import { FaBoxOpen } from "react-icons/fa";
 
 const ManageListingByAdminPage = async ({ searchParams }: { searchParams: Promise<{ page: string }> }) => {
-  const { page } = await searchParams;
-  const result = await getAllListings(page, undefined, undefined);
+  const query = await searchParams;
+  const result = await getAllListings(query);
   const { data, meta } = result;
   return (
     <Suspense fallback={<TableSkeletonLoader />}>
-      <div>
+      <DashboardContainer>
         {data && data.length > 0 ? (
           <ReviewListing listings={data} meta={meta} />
         ) : (
@@ -23,7 +24,7 @@ const ManageListingByAdminPage = async ({ searchParams }: { searchParams: Promis
             </div>
           </div>
         )}
-      </div>
+      </DashboardContainer>
     </Suspense>
   );
 };

@@ -44,7 +44,7 @@ const ListingCard = async ({ listing }: { listing: TListingDetails }) => {
       <CardFooter className="block p-0">
         <div className="flex gap-2 items-center justify-between">
           <Link href={`/listings/${listing?._id}`} passHref>
-            <Button size="sm" variant="primary" className="w-32">
+            <Button size="sm" variant="primary">
               <BsEye />
               View Details
             </Button>

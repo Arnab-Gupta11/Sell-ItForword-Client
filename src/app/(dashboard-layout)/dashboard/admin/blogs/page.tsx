@@ -1,4 +1,5 @@
 import ManageBlogs from "@/components/modules/dashboard/admin/ManageBlogs/ManageBlogs";
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
 
 import { getAllBlogs } from "@/services/blog";
@@ -12,7 +13,7 @@ const ManageBlogsPage = async ({ searchParams }: { searchParams: Promise<Record<
   const { data, meta } = result;
   return (
     <Suspense fallback={<TableSkeletonLoader />}>
-      <div>
+      <DashboardContainer>
         {data && data.length > 0 ? (
           <ManageBlogs blogs={data} meta={meta} />
         ) : (
@@ -24,7 +25,7 @@ const ManageBlogsPage = async ({ searchParams }: { searchParams: Promise<Record<
             </div>
           </div>
         )}
-      </div>
+      </DashboardContainer>
     </Suspense>
   );
 };

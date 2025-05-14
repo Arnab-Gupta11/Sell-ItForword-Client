@@ -1,3 +1,4 @@
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import ManageListings from "@/components/modules/dashboard/user/ManageListings/ManageListings";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/services/auth";
@@ -12,7 +13,7 @@ const ManageListingsPage = async ({ searchParams }: { searchParams: Promise<{ pa
   const result = await getAllListingsOfAUser(res.userId, page);
   const { data, meta } = result;
   return (
-    <div>
+    <DashboardContainer>
       {data && data.length > 0 ? (
         <ManageListings listings={data} meta={meta} />
       ) : (
@@ -31,7 +32,7 @@ const ManageListingsPage = async ({ searchParams }: { searchParams: Promise<{ pa
           </div>
         </div>
       )}
-    </div>
+    </DashboardContainer>
   );
 };
 

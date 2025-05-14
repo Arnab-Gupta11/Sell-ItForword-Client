@@ -1,3 +1,4 @@
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import ManageWishlist from "@/components/modules/dashboard/user/ManageWishlist/ManageWishlist";
 import { getCurrentUser } from "@/services/auth";
 import { getWishList } from "@/services/wishlist";
@@ -7,7 +8,7 @@ const WishlistPage = async () => {
   const user = await getCurrentUser();
   const res = await getWishList(user.userId);
   return (
-    <div>
+    <DashboardContainer>
       {res?.data && res?.data?.listings?.length > 0 ? (
         <ManageWishlist result={res?.data?.listings} />
       ) : (
@@ -20,7 +21,7 @@ const WishlistPage = async () => {
           </div>
         </div>
       )}
-    </div>
+    </DashboardContainer>
   );
 };
 

@@ -3,7 +3,7 @@ import { getBlogDetails } from "@/services/blog";
 import { TBlog } from "@/types/blog.types";
 
 export const generateStaticParams = async () => {
-  const res = await fetch(`http://localhost:5000/api/v1/blogs`);
+  const res = await fetch(`https://sell-itforword-server.vercel.app/api/v1/blogs`);
   const blogs = await res.json();
   return blogs?.data?.slice(0, 3).map((blog: TBlog) => ({
     blogId: blog._id,
@@ -12,7 +12,7 @@ export const generateStaticParams = async () => {
 
 export async function generateMetadata({ params }: { params: Promise<{ blogId: string }> }) {
   const { blogId } = await params;
-  const res = await fetch(`http://localhost:5000/api/v1/blogs/${blogId}`);
+  const res = await fetch(`https://sell-itforword-server.vercel.app/api/v1/blogs/${blogId}`);
   const blog = await res.json();
 
   return {

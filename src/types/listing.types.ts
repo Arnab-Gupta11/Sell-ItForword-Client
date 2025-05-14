@@ -1,3 +1,4 @@
+import { ICategory } from "./category.types";
 import { TRefUser } from "./user.types";
 
 export interface IListing {
@@ -18,7 +19,7 @@ export interface IListing {
 }
 export type TListingDetails = {
   address: string;
-  category: string;
+  category: ICategory;
   city: string;
   condition: string;
   createdAt: string;

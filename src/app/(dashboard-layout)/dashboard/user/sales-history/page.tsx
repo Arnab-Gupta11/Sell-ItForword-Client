@@ -1,3 +1,4 @@
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import SalesHistory from "@/components/modules/dashboard/user/SalesHistory/SalesHistory";
 import { getCurrentUser } from "@/services/auth";
 import { getSalesHistory } from "@/services/transaction";
@@ -7,7 +8,7 @@ const SalesHistoryPage = async () => {
   const user = await getCurrentUser();
   const res = await getSalesHistory(user.userId);
   return (
-    <div>
+    <DashboardContainer>
       {res?.data && res?.data?.result?.length > 0 ? (
         <SalesHistory result={res?.data?.result} meta={res?.data?.meta} />
       ) : (
@@ -20,7 +21,7 @@ const SalesHistoryPage = async () => {
           </div>
         </div>
       )}
-    </div>
+    </DashboardContainer>
   );
 };
 

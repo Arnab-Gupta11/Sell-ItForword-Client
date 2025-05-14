@@ -6,7 +6,7 @@ import "swiper/css/free-mode";
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import { TBlog } from "@/types/blog.types";
 import BlogCard from "../../blog/BlogCard";
-
+import "./slider-paginate.css";
 const LatestBlogsSlider = ({ blogs }: { blogs: TBlog[] }) => {
   return (
     <div>
@@ -43,6 +43,7 @@ const LatestBlogsSlider = ({ blogs }: { blogs: TBlog[] }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* <div className="custom-pagination"></div> */}
     </div>
   );
 };

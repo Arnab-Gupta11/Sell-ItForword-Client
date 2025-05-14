@@ -61,7 +61,7 @@ const ProfileAvatar = () => {
               </>
             )}
             {user && (
-              <Link href={user?.role === "admin" ? "/dashboard/admin/user-management" : "/dashboard/user/listings"}>
+              <Link href={user?.role === "admin" ? "/dashboard/admin/overview" : "/dashboard/user/listings"}>
                 <DropdownMenuItem className="cursor-pointer flex items-center hover:text-primary">
                   <LayoutDashboard className="w-4 h-4 mr-2" />
                   Dashboard

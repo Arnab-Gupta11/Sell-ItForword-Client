@@ -13,7 +13,7 @@ import imageUpload from "@/lib/imageUpload";
 import { ImSpinner10 } from "react-icons/im";
 import { createListing } from "@/services/listing";
 import { useRouter } from "next/navigation";
-import { categoryOptions, cityOptions, conditionOptions } from "@/constants/listing.constant";
+import { cityOptions, conditionOptions } from "@/constants/listing.constant";
 import { ICategory } from "@/types/category.types";
 
 const AddListingForm = ({ categories }: { categories: ICategory[] }) => {
@@ -32,21 +32,20 @@ const AddListingForm = ({ categories }: { categories: ICategory[] }) => {
     try {
       setLoading(true);
       const image = data.image[0];
-      // const imageData = await imageUpload(image);
+      const imageData = await imageUpload(image);
       const listingInfo = {
         ...data,
         price: Number(data.price),
-        // image: imageData,
+        image: imageData,
       };
-      console.log(listingInfo);
-      // const res = await createListing(listingInfo);
-      // if (res?.success) {
-      //   toast.success(res?.message);
-      //   reset();
-      //   router.push("/dashboard/user/listings");
-      // } else {
-      //   toast.error(res?.message);
-      // }
+      const res = await createListing(listingInfo);
+      if (res?.success) {
+        toast.success(res?.message);
+        reset();
+        router.push("/dashboard/user/listings");
+      } else {
+        toast.error(res?.message);
+      }
     } catch (err: any) {
       console.log(err);
     } finally {

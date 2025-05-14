@@ -11,12 +11,13 @@ import { Input } from "@/components/ui/input";
 import imageUpload from "@/lib/imageUpload";
 import { ImSpinner10 } from "react-icons/im";
 import { useRouter } from "next/navigation";
-import { categoryOptions, cityOptions, conditionOptions } from "@/constants/listing.constant";
+import { cityOptions, conditionOptions } from "@/constants/listing.constant";
 import { TListingDetails } from "@/types/listing.types";
 import { UpdateListing } from "@/services/listing";
+import { ICategory } from "@/types/category.types";
 
-const UpdateListingForm = ({ listingDetails }: { listingDetails: TListingDetails }) => {
-  const { _id, address, category, city, condition, description, image, phone, price, title } = listingDetails;
+const UpdateListingForm = ({ listingDetails, categories }: { listingDetails: TListingDetails; categories: ICategory[] }) => {
+  const { _id, address, city, condition, description, image, phone, price, title } = listingDetails;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +39,7 @@ const UpdateListingForm = ({ listingDetails }: { listingDetails: TListingDetails
       }
       const listingInfo = {
         address: data.address || address,
-        category: data.category || category,
+        category: data.category || listingDetails?.category?._id,
         city: data.city || city,
         condition: data.condition || condition,
         description: data.description || description,
@@ -107,16 +108,16 @@ const UpdateListingForm = ({ listingDetails }: { listingDetails: TListingDetails
             <div className="w-full md:w-1/2">
               <Label>Category</Label>
               <select
-                defaultValue={category}
+                defaultValue={listingDetails?.category?._id}
                 className="bg-light-primary-bg dark:bg-dark-primary-bg flex h-9 w-full rounded-md px-3 py-1.5  md:text-sm hover:cursor-pointer mt-1.5 focus-visible:outline-none"
                 {...register("category", { required: true })}
               >
                 <option value="" className="text-slate-800">
                   Select Category
                 </option>
-                {categoryOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
+                {categories?.map((option) => (
+                  <option key={option._id} value={option._id}>
+                    {option.name}
                   </option>
                 ))}
               </select>

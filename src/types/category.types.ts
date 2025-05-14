@@ -8,3 +8,8 @@ export interface ICategory {
   createdAt?: string;
   updatedAt?: string;
 }
+export interface ICategoryFormData {
+  name: string;
+  description: string;
+  icon: FileList;
+}

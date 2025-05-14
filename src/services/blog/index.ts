@@ -4,8 +4,6 @@ import { TBlog, TBlogFormData } from "@/types/blog.types";
 import { revalidateTag } from "next/cache";
 
 export const getAllBlogs = async (query?: { [key: string]: string | string[] | undefined }) => {
-  const token = await getValidToken();
-
   const params = new URLSearchParams();
   if (query?.page) {
     params.append("page", query?.page.toString());
@@ -16,9 +14,6 @@ export const getAllBlogs = async (query?: { [key: string]: string | string[] | u
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs?${params}`, {
       method: "GET",
-      headers: {
-        Authorization: token,
-      },
       next: {
         tags: ["BLOG"],
       },

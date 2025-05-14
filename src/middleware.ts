@@ -32,5 +32,5 @@ export async function middleware(req: NextRequest) {
 
 // Define paths that the middleware should run on
 export const config = {
-  matcher: ["/dashboard/:path*"], // Ensures middleware runs on all dashboard routes
+  matcher: ["/dashboard/:path*", "/login", "/register"],
 };

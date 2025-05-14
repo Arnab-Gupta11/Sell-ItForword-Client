@@ -73,10 +73,15 @@ const Login = () => {
       setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
+
         if (redirect) {
           router.push(redirect);
         } else {
-          router.push("/");
+          if (data.email === "guest@gmail.com") {
+            router.push("/");
+          } else {
+            router.push("/dashboard/admin/overview");
+          }
         }
       } else {
         toast.error(res?.message);

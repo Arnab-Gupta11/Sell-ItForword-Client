@@ -36,7 +36,7 @@ const SearchDropdown = () => {
       setLoading(false);
     }
   };
-//ab
+  //ab
   useEffect(() => {
     const timer = setTimeout(fetchData, 300);
     return () => {
@@ -84,7 +84,7 @@ const SearchDropdown = () => {
 
   return (
     <div className="relative w-full max-w-md mx-auto px-5 sm:px-0 mt-10" ref={searchRef}>
-      <div className="relative flex items-center rounded-xl overflow-hidden bg-[#eceded] dark:bg-[#07141e] h-14 shadow-box-shadow dark:shadow-box-shadow-dark">
+      <div className="relative flex items-center rounded-xl overflow-hidden bg-[#eceded] dark:bg-[#07141e] h-14 shadow-box-shadow dark:shadow-box-shadow-dark border-2 border-[#c8dde9] dark:border-[#07212d]">
         <Input
           type="text"
           value={input}

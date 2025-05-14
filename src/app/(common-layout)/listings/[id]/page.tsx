@@ -10,7 +10,7 @@ import WishListButton from "@/components/modules/listings/WishListButton";
 import { getCurrentUser } from "@/services/auth";
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const res = await fetch(`https://sell-itforword-server.vercel.app/api/v1//listings/${id}`);
+  const res = await fetch(`https://sell-itforword-server.vercel.app/api/v1/listings/${id}`);
   const result = await res.json();
 
   return {
@@ -59,7 +59,7 @@ const ListingDetails = async ({ params }: { params: Promise<{ id: string }> }) =
             <h1 className="font-semibold text-light-primary-txt dark:text-dark-primary-txt mt-4">Description:</h1>
             <p className=" text-light-secondary-txt dark:text-dark-secondary-txt">{data?.description}</p>
             <h4 className="text-light-secondary-txt dark:text-dark-secondary-txt mt-2">
-              <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Category:</span> {data?.category}
+              <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Category:</span> {data?.category?.name}
             </h4>
             <h4 className="text-light-secondary-txt dark:text-dark-secondary-txt mt-2">
               <span className="font-semibold text-light-primary-txt dark:text-dark-primary-txt">Condition:</span> {data?.condition}

@@ -14,59 +14,73 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import logo from "@/assets/logo/Logo1.png";
 import Image from "next/image";
-import { FaList, FaShoppingCart, FaChartLine, FaUser, FaHeart, FaUsers, FaClipboardList } from "react-icons/fa";
+import { List, ShoppingCart, LineChart, User, Heart, LayoutDashboard, Users, Tags, Store, Newspaper } from "lucide-react";
+
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user, setIsLoading } = useUser();
+
   const menuItems = [
     {
       label: "Manage Listings",
       path: "/dashboard/user/listings",
       show: user?.role === "user",
-      Icon: FaList, // 📋 List Icon (for managing listings)
+      Icon: Store, // 🏪 Store (for managing personal listings)
     },
     {
       label: "Track Purchases",
       path: "/dashboard/user/purchase-history",
       show: user?.role === "user",
-      Icon: FaShoppingCart, // 🛒 Shopping Cart Icon (for purchase history)
+      Icon: ShoppingCart, // 🛒 Shopping Cart (for purchase history)
     },
     {
       label: "Track Sales",
       path: "/dashboard/user/sales-history",
       show: user?.role === "user",
-      Icon: FaChartLine, // 📈 Chart Icon (for tracking sales)
+      Icon: LineChart, // 📈 Line Chart (for tracking sales)
     },
     {
       label: "Manage Profile",
       path: "/dashboard/user/profile",
       show: user?.role === "user",
-      Icon: FaUser, // 👤 User Icon (for profile management)
+      Icon: User, // 👤 User (for profile management)
     },
     {
       label: "Wishlist",
       path: "/dashboard/user/wishlist",
       show: user?.role === "user",
-      Icon: FaHeart, // ❤️ Heart Icon (for wishlist)
+      Icon: Heart, // ❤️ Heart (for wishlist)
     },
     {
-      label: "Manage User",
+      label: "Overview",
+      path: "/dashboard/admin/overview",
+      show: user?.role === "admin",
+      Icon: LayoutDashboard, // 📊 Dashboard (for admin overview)
+    },
+    {
+      label: "Manage Users",
       path: "/dashboard/admin/user-management",
       show: user?.role === "admin",
-      Icon: FaUsers, // 👥 Users Icon (for user management)
+      Icon: Users, // 👥 Users (for managing users)
+    },
+    {
+      label: "Manage Categories",
+      path: "/dashboard/admin/categories",
+      show: user?.role === "admin",
+      Icon: Tags, // 🏷️ Tags (for category management)
     },
     {
       label: "Manage Listings",
       path: "/dashboard/admin/listings",
       show: user?.role === "admin",
-      Icon: FaClipboardList, // 📋 Clipboard Icon (for listing management)
+      Icon: Store, // 🏪 Store (for managing all listings)
     },
     {
       label: "Manage Blogs",
       path: "/dashboard/admin/blogs",
       show: user?.role === "admin",
-      Icon: FaClipboardList, // 📋 Clipboard Icon (for listing management)
+      Icon: Newspaper, // 📰 Newspaper (for blog management)
     },
   ];
 
@@ -152,9 +166,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
         {/* Content Area */}
         <main className="flex-1 p-6 bg-light-primary-bg dark:bg-dark-primary-bg rounded-lg">
-          <div className="p-4 bg-light-secondary-bg dark:bg-dark-secondary-bg shadow-md dark:shadow-slate-900 min-h-screen rounded-lg">
-            {children}
-          </div>
+          <div className="">{children}</div>
         </main>
       </div>
     </div>

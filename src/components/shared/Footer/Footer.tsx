@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="w-full max-w-[90%] mx-auto p-4 md:py-8">
         <div className="flex flex-col items-center justify-center sm:flex-row sm:items-center sm:justify-between">
           <Image src={logo} alt="logo" width={200} priority className="h-10" />
-          <ul className="flex  flex-wrap items-center mb-6 text-sm font-medium text-slate-300 sm:mb-0 mt-6 ">
+          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-slate-300 sm:mb-0 mt-6 ">
             <li>
               <Link href={"/"}>
                 <span className="hover:border-b pb-0.5 hover:text-primary hover:border-primary duration-700 ease-in-out">Home</span>
@@ -26,6 +26,21 @@ const Footer = () => {
             <li>
               <Link href={"/contact"}>
                 <span className="hover:border-b pb-0.5 hover:text-primary hover:border-primary duration-700 ease-in-out ml-4 md:ml-6">Contact</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/blogs"}>
+                <span className="hover:border-b pb-0.5 hover:text-primary hover:border-primary duration-700 ease-in-out ml-4 md:ml-6">Blogs</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/about-us"}>
+                <span className="hover:border-b pb-0.5 hover:text-primary hover:border-primary duration-700 ease-in-out ml-4 md:ml-6">About</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/faq"}>
+                <span className="hover:border-b pb-0.5 hover:text-primary hover:border-primary duration-700 ease-in-out ml-4 md:ml-6">FAQ</span>
               </Link>
             </li>
           </ul>

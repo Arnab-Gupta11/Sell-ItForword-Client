@@ -12,6 +12,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import SalesDetails from "./SalesDetails";
 import UpdateTransactionStatus from "./UpdateTransactionStatus";
 const SalesHistory = ({ result, meta }: { result: ITransaction[]; meta: TMeta }) => {
+
   return (
     <div>
       <div className="mb-5">

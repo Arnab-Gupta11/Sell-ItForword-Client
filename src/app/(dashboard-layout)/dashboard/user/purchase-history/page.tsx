@@ -1,3 +1,4 @@
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import PurchaseHistory from "@/components/modules/dashboard/user/PurchaseHistory/PurchaseHistory";
 import { getCurrentUser } from "@/services/auth";
 import { getPurchaseHistory } from "@/services/transaction";
@@ -7,7 +8,7 @@ const PurchaseHistoryPage = async () => {
   const user = await getCurrentUser();
   const res = await getPurchaseHistory(user.userId);
   return (
-    <div>
+    <DashboardContainer>
       {res?.data && res?.data?.result?.length > 0 ? (
         <PurchaseHistory result={res?.data?.result} meta={res?.data?.meta} />
       ) : (
@@ -20,7 +21,7 @@ const PurchaseHistoryPage = async () => {
           </div>
         </div>
       )}
-    </div>
+    </DashboardContainer>
   );
 };
 

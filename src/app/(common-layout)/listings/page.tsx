@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }) => {
   const query = await searchParams;
 
-  const { data: listings, meta } = await getAllListings(query);
+  const { data: listings } = await getAllListings(query);
   const result = await getAllCategories();
   return (
     <div>
@@ -32,7 +32,7 @@ const AllListingsPage = async ({ searchParams }: { searchParams: TSearchParams }
           </BreadcrumbList>
         </Breadcrumb>
       </PageHeader>
-      <AllListings listings={listings} meta={meta} categories={result?.data} />
+      <AllListings listings={listings} categories={result?.data} />
     </div>
   );
 };

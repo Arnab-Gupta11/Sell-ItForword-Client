@@ -39,7 +39,7 @@ const Category = async () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 bs:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5 mt-12">
-        {result?.data?.map((item: ICategory) => (
+        {result?.data?.slice(0, 10).map((item: ICategory) => (
           <Link href={`/listings/categories/${item?._id}`} key={item?._id}>
             <div className="flex flex-col items-center justify-center gap-2 p-5 rounded-lg bg-light-secondary-bg dark:bg-dark-secondary-bg cursor-pointer  border-2 border-[#e9ebec] dark:border-[#142e3a] shadow-sm shadow-[#e9ebec] dark:shadow-[#142e3a]">
               <Image src={item?.icon} alt={item?.name} width={80} height={80} className="w-16 h-16" />

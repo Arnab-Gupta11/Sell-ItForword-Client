@@ -1,4 +1,5 @@
 import ManageUser from "@/components/modules/dashboard/admin/ManageUser/ManageUser";
+import DashboardContainer from "@/components/modules/dashboard/Dashboard/DashboardContainer";
 import TableSkeletonLoader from "@/components/shared/Loader/TableSkeletonLoader";
 import { getAllUsers } from "@/services/user";
 import { Suspense } from "react";
@@ -8,7 +9,7 @@ const ManageUserPage = async () => {
   const res = await getAllUsers();
   return (
     <Suspense fallback={<TableSkeletonLoader />}>
-      <div>
+      <DashboardContainer>
         {res?.data && res?.data?.length > 0 ? (
           <ManageUser result={res?.data} meta={res?.meta} />
         ) : (
@@ -21,7 +22,7 @@ const ManageUserPage = async () => {
             </div>
           </div>
         )}
-      </div>
+      </DashboardContainer>
     </Suspense>
   );
 };

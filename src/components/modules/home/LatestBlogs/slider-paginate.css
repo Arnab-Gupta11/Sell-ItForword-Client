@@ -1,0 +1,21 @@
+/* Custom Pagination Styles */
+.custom-pagination .swiper-pagination-bullet {
+  background-color: red !important; /* Red color for the dot */
+  width: 12px !important; /* Adjust width of the dot */
+  height: 12px !important; /* Adjust height of the dot */
+  border-radius: 50% !important; /* Make the dots round */
+  margin: 0 8px !important; /* Space between dots */
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #ff0000 !important; /* Red color for active dot */
+}
+
+.custom-pagination {
+  position: absolute !important;
+  bottom: 10px !important; /* Adjust positioning */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  justify-content: center !important;
+}
